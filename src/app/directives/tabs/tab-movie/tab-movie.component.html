@@ -1,0 +1,13 @@
+
+<div class="row" *ngFor="let movie of hotMovieOnWeek">
+  <div class="thumb-image col-lg-4 col-md-6 col-sm-12">
+    <img src="../../../assets/images/films/db0835d9ac4807b225dee26701f8e1b7.jpg" alt="..." class="img-thumbnail">
+  </div>
+  <div class="img-info col-lg-8 col-md-6 col-sm-12">
+    <p class="name">{{movie.name}}</p>
+    <p class="el-name">{{movie.el_name}}</p>
+    <p><span  class="view-number">Lượt xem: </span><span>{{movie.viewer}}</span></p>
+    <p><span class="review">Đánh giá: </span>  <i class="icon" *ngFor="let star of movie.review; let i = index" (click)="setStarTable(movie,i)" [ngClass]="{'ion-md-star-outline':star,'ion-md-star':!star}"></i> </p>
+  </div>
+</div>
+

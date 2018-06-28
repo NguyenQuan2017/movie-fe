@@ -1,0 +1,21 @@
+<div class="movies-hot-week">
+  <div style="padding: 5px;">
+    <ul id="tabsJustified" class="nav nav-tabs">
+      <li class="nav-item"><a href="" data-target="#phimbohot" data-toggle="tab" class="nav-link small text-uppercase active">Phim bộ hót</a></li>
+      <li class="nav-item"><a href="" data-target="#phimlehot" data-toggle="tab" class="nav-link small text-uppercase ">Phim Lẻ Hót</a></li>
+      <li class="nav-item"><a href="" data-target="#trailer" data-toggle="tab" class="nav-link small text-uppercase ">Trailer </a></li>
+    </ul>
+    <br>
+    <div id="tabsJustifiedContent" class="tab-content">
+      <div id="phimbohot" class="tab-pane fade  active show">
+        <app-tab-series-movie></app-tab-series-movie>
+      </div>
+      <div id="phimlehot" class="tab-pane fade">
+        <app-tab-movie></app-tab-movie>
+      </div>
+      <div id="trailer" class="tab-pane fade">
+        <app-tab-trailer></app-tab-trailer>
+      </div>
+    </div>
+  </div>
+</div>

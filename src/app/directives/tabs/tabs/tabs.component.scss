@@ -1,0 +1,16 @@
+.movies-hot-week {
+  background-color: white;
+  margin-top: 20px;
+  a.mat-tab-link{
+    background-color: black;
+    width: 100%;
+
+  }
+  a.mat-tab-label-active {
+    background-color: black;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+

@@ -1,0 +1,43 @@
+@media (max-width: 768px) {
+  .cbp-af-header {
+    display: none;
+  }
+}
+
+.navbar-brand {
+  img {
+    width: 130px;
+  }
+}
+.cbp-af-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f6f6f6;
+  z-index: 10000;
+  overflow: hidden;
+  -webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  transition: height 0.3s;
+  line-height: 100px;
+  height: 120px;
+  text-align:center;
+}
+.cbp-af-header.shrink {
+  height: 100px;
+  line-height:60px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-top: 5px;
+}
+
+.cbp-af-header .cbp-af-inner {
+  width: 90%;
+  max-width: 69em;
+  //padding: 0 1.875em;
+}
+.cbp-af-header nav {
+  position: relative;
+}
