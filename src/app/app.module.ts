@@ -19,6 +19,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
 import { TabTrailerComponent } from './directives/tabs/tab-trailer/tab-trailer.component';
 import { TagComponent } from './directives/tags/tag/tag.component';
 import { SocialComponent } from './directives/socials/social/social.component';
+import { FooterComponent } from './directives/footer/footer/footer.component';
 
 
 
@@ -41,6 +42,7 @@ import { SocialComponent } from './directives/socials/social/social.component';
     TabTrailerComponent,
     TagComponent,
     SocialComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

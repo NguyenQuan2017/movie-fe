@@ -26,3 +26,60 @@ $(function(){
         return window.pageYOffset || document.documentElement.scrollTop;
     }
 });
+
+$(document).ready(function(e) {
+    if(screen.width >= 768)
+    {
+        $(".dropdown").hover(function(){
+            $('.nav-ul.active');
+            $(".dropdownmenu").toggleClass("open");
+        });
+        $(".dropdown1").hover(function(){
+            $('.nav-ul.active');
+            $(".dropdownmenu1").toggleClass("open");
+        });
+        $(".dropdown2").hover(function(){
+            $('.nav-ul.active');
+            $(".dropdownmenu2").toggleClass("open");
+        });
+    }
+
+    if(screen.width <= 760)
+    {
+        $('.menu_btn').click(function(){
+            $('.nav-ul').toggleClass('active');
+            $('.baars').toggleClass('cross');
+            $(".dropdownmenu").slideUp();
+            $(".dropdownmenu1").slideUp();
+            $(".dropdownmenu2").slideUp();
+
+        });
+
+        $(".dropdown").click(function(){
+            $(".dropdownmenu").slideToggle();
+        });
+        $(".dropdown1").click(function(){
+            $(".dropdownmenu1").slideToggle();
+        });
+        $(".dropdown2").click(function(){
+            $(".dropdownmenu2").slideToggle();
+        });
+
+
+        $('.nav-ul').click(function(e) {
+            if( !$(e.target).hasClass('dropdownlink') )
+            {
+                $(".nav-ul.active").toggleClass("active");
+                $('.baars.cross').toggleClass('cross');
+                $(".dropdownmenu").slideUp();
+                $(".dropdownmenu1").slideUp();
+                $(".dropdownmenu2").slideUp();
+            }
+        });
+
+    }
+    window.onresize = function(event)
+    {
+        document.location.reload(true);
+    }
+});
