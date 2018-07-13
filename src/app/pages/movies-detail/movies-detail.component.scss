@@ -1,0 +1,126 @@
+.movies-detail {
+  font-size: 14px;
+}
+.breadcrumbs {
+  width: 100%;
+  line-height: 30px;
+  padding: 10px;
+  background-color: #262424;
+  margin-bottom: 10px;
+}
+.breadcrumbs h4 {
+  color: white;
+}
+.info-movie {
+  background-color: #262525;
+}
+.detail-image {
+  margin-top: 10px;
+  position: relative;
+}
+.detail-image img {
+  height: 480px;
+  width: 100%;
+}
+.btn-movie {
+  position: absolute;
+  bottom: 85px;
+  width: 100%;
+  margin: 10px;
+}
+.btn-movie a {
+  margin: 2px;
+}
+.detail-info {
+  margin-top: 10px;
+  color: white;
+}
+.detail-info h3 {
+  color: #bebeda;
+}
+.detail-info h4 {
+  font-size: 15px;
+}
+@media only screen and(max-width: 768px) {
+  .btn-movie{
+    width: 70%;
+    margin-left: 40px;
+  }
+}
+.movies-detail h2 {
+  line-height: 20px;
+  padding: 10px;
+  background-color: #262424;
+  color: white;
+}
+.info-movie  {
+  margin-bottom: 50px;
+}
+.movie-content {
+  background-color: #262525 ;
+}
+.tab-content {
+  color: white;
+  background-color: #3b3b3c;
+}
+.image-actor img {
+  height: 200px;
+}
+.btn-tag {
+  height:31px;
+  border-radius: 0;
+  line-height:27px;
+  vertical-align:middle;
+  text-align:center;
+  padding:0 15px;
+  color:#ffffff;
+  background-color:#1f2021;
+  position:relative;
+  display:inline-block;
+  margin-bottom: 20px;
+}
+.btn-tag:after {
+  position:absolute;
+  right:-16px;
+  content:" ";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent transparent transparent #1f2021;
+}
+.btn-tag:hover {
+  background-color:#2c2e2f;
+}
+.btn-tag:hover:after {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent transparent transparent #2c2e2f;
+}
+.ads_300_600 {
+  background-color: white;
+  height: 600px;
+  width: 100%;
+  margin-bottom: 1px;
+}
+.ads_300_250 {
+  background-color: white;
+  height: 250px;
+  width: 100%;
+  margin-bottom: 1px;
+}
+.link-facebook {
+  height: 150px;
+  background-color: white;
+  width: 100%;
+  margin-bottom: 1px;
+}
+.related-movie {
+  background-color: #262626;
+  padding: 5px;
+}
+.related-movie h2 {
+  margin-top: 20px;
+}

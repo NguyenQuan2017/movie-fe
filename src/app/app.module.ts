@@ -20,10 +20,7 @@ import { TabTrailerComponent } from './directives/tabs/tab-trailer/tab-trailer.c
 import { TagComponent } from './directives/tags/tag/tag.component';
 import { SocialComponent } from './directives/socials/social/social.component';
 import { FooterComponent } from './directives/footer/footer/footer.component';
-
-
-
-
+import { MoviesDetailComponent } from './pages/movies-detail/movies-detail.component';
 
 
 @NgModule({
@@ -43,6 +40,7 @@ import { FooterComponent } from './directives/footer/footer/footer.component';
     TagComponent,
     SocialComponent,
     FooterComponent,
+    MoviesDetailComponent,
   ],
   imports: [
     BrowserModule,
