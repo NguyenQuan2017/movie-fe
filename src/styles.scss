@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap";
-//@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 body {
   font-family: 'Arsenal', sans-serif;
   background-color: #3e3e3e ;
+  font-size: 17px;
 }
 @media only screen and (max-width: 768px) {
   body {
     font-family: 'Poppins', sans-serif;
-    background-color:  #3e3e3e ;
+    background-color:  #3c3b3b ;
   }
 }
 
@@ -17,20 +17,30 @@ body {
   margin-bottom: 20px;
 }
 
-.movies {
-  background-color: white;
-}
 
 .images {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 5px;
+  padding: 20px;
   cursor: pointer;
+  transition: transform 0.6s;
+  color: white;
+}
+.images a {
+  color: white;
+}
+.images a:hover {
+  text-decoration: none;
+}
+.images:hover {
+  -ms-transform: scale3d(1.1, 1.1, 1); /* IE 9 */
+  -webkit-transform: scale3d(1.1, 1.1, 1); /* Safari 3-8 */
+  transform: scale3d(1.1, 1.1, 1.1);
 }
 .images img {
   width: 100%;
-  height: 100%;
+  height: 320px;
 }
 .img-thumbnail {
   display: block;
@@ -38,25 +48,6 @@ body {
   height: 250px;
 }
 
-
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #eceff5;
-  overflow: hidden;
-  width: 0;
-  height: 100%;
-  transition: .5s ease;
-  opacity: 0.8;
-}
-
-.images:hover .overlay {
-  width: 100%;
-  left: 0;
-  right: 10px;
-}
 
 .text {
   color: black;
@@ -85,6 +76,9 @@ body {
     margin-right: 5px;
   }
 }
+.name-movie p {
+  margin-bottom: 5px;
+}
 .btn-trailer {
   margin-left: 10px;
   margin-right: 5px;
@@ -96,6 +90,9 @@ body {
 }
 .img-thumbnail {
   height: auto;
+}
+.images .el-name {
+  font-size: 14px;
 }
 .img-info {
   font-size: 15px;
@@ -118,4 +115,16 @@ body {
 }
 .movies-hot-week {
   margin-bottom: 25px;
+}
+@media only screen and (max-width: 768px) {
+  .images img {
+    width: 100%;
+    height: auto;
+  }
+}
+.hidden{
+  opacity:0;
+}
+.visible{
+  opacity:1;
 }

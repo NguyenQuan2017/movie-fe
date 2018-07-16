@@ -83,3 +83,10 @@ $(document).ready(function(e) {
         document.location.reload(true);
     }
 });
+
+jQuery(document).ready(function() {
+    jQuery('.images').addClass("hidden").viewportChecker({
+        classToAdd: 'visible animated fadeIn',
+        offset: 100
+    });
+});

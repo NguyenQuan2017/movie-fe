@@ -21,6 +21,7 @@ import { TagComponent } from './directives/tags/tag/tag.component';
 import { SocialComponent } from './directives/socials/social/social.component';
 import { FooterComponent } from './directives/footer/footer/footer.component';
 import { MoviesDetailComponent } from './pages/movies-detail/movies-detail.component';
+import { AnimeComponent } from './directives/movies/anime/anime.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MoviesDetailComponent } from './pages/movies-detail/movies-detail.compo
     SocialComponent,
     FooterComponent,
     MoviesDetailComponent,
+    AnimeComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,18 +19,17 @@
 
 .tile {
   min-height: 200px;
-  height: 310px;
-  background-color: #ccc;
-  background-size: cover !important;
-}
-
-.tile  {
+  height: 352px;
+  background-size: 257px 355px !important;
+  //background-size: cover !important;
+  background-repeat: no-repeat !important;
   text-align: center;
   line-height: 310px;
   background: rgba(0, 0, 0, 0.32);
   color: white;
   margin: 0;
 }
+
 
 h4 {
   margin: 0;
@@ -45,8 +44,9 @@ p {
 }
 
 .wBg {
-  background: white;
+  background: #262626;
   height: 400px;
+  color: white;
 }
 
 

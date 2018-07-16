@@ -18,16 +18,13 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit() {
     this.images = [
-        'assets/images/carousels/natural_scenery_02_hd_picture_166159.jpg',
-        'assets/images/carousels/2cfb9d677ab170c0626a905ede783fb9.jpg',
-        'assets/images/carousels/63766e5fa0394668d62b153086d035d5--nature-wallpaper-hd-wallpaper.jpg',
-        'assets/images/carousels/a746f74e09c6684cf3542650e5bb8c4d.jpg',
-        'assets/images/carousels/abe3ff36e5c5bfd564b3051b43dc3c44.jpg',
-        'assets/images/carousels/Hd-Waterfall-3d-Live-4k-Wallpaper-480x600.jpeg',
-        'assets/images/carousels/1.jpg',
-        'assets/images/carousels/screen-0.jpg',
-        'assets/images/carousels/2.jpg',
-        'assets/images/carousels/big_sur-exposure.jpg',
+        'assets/images/films/360_xxx/bac_thay_cua_nhung_uoc_mo.png',
+        'assets/images/films/360_xxx/chien_binh_bao_den.png',
+        'assets/images/films/360_xxx/giai_ma_me_cung_loi_thoat_tu_than.png',
+        'assets/images/films/360_xxx/nguoi_dep_va_thuy_quai.png',
+        'assets/images/films/360_xxx/nhiem_vu_bat_kha_thi_6.png',
+        'assets/images/films/360_xxx/phat_sung_cuoi_cung.png',
+        'assets/images/films/360_xxx/thu6_ngay13.png',
     ];
 
       this.carouselTileOne = {
@@ -50,13 +47,13 @@ export class CarouselComponent implements OnInit {
           .ngxcarouselPoint li {
             display: inline-block;
             border-radius: 50%;
-            background: #6b6b6b;
+            background: #f5e458;
             padding: 5px;
             margin: 0 3px;
             transition: .4s ease all;
           }
           .ngxcarouselPoint li.active {
-              border: 2px solid rgba(0, 0, 0, 0.55);
+              border: 2px solid rgb(245, 228, 88);
               transform: scale(1.2);
               background: transparent;
             }

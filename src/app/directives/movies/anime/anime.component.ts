@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-movie',
-  templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.scss']
+  selector: 'app-anime',
+  templateUrl: './anime.component.html',
+  styleUrls: ['./anime.component.scss']
 })
-export class MovieComponent implements OnInit {
+export class AnimeComponent implements OnInit {
 
-    movies: any[] = [
+    animes: any[] = [
         {'Id': 1, 'name': 'Robot đại chiến 5: Chiến binh cuối cùng', 'el_name': 'Transformers 5: The Last Knight', 'image': '../../../assets/images/films/db0835d9ac4807b225dee26701f8e1b7.jpg', 'viewer': 12.000, 'review': [false, false, true, true, true]},
         {'Id': 2, 'name': 'giải mã mê cung: Lối thoát tử thần', 'el_name': 'Maze Runner: The Death Cure', 'image': '../../../assets/images/films/360_xxx/giai_ma_me_cung_loi_thoat_tu_than.png', 'viewer': 923.123, 'review': [true, true, true, true, true]},
         {'Id': 3, 'name': 'Người đẹp và thủy quái', 'el_name': 'The Shape Of Water', 'image': '../../../assets/images/films/360_xxx/nguoi_dep_va_thuy_quai.png', 'viewer': 734.123, 'review': [true, true, true, true, true]},

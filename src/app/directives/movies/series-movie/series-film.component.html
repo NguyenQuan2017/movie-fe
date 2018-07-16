@@ -1,51 +1,14 @@
 <div class="row">
-  <div class="col-md-4 col-xs-12 col-sm-12">
-    <div class="images">
-      <img src="../../../assets/images/films/db0835d9ac4807b225dee26701f8e1b7.jpg" alt="Avatar" class="img-fluid">
-      <div class="overlay">
-        <div class="text">
-          <div class="row">
-            <a class="btn btn-primary btn-trailer">Primary</a>
-            <a class="btn btn-danger btn-watch-movie">Danger</a>
-          </div>
+  <div class="col-md-3 col-sm-4" *ngFor="let serie_moive of series_movies">
+    <a [routerLink]="'/chi-tiet'">
+      <div class="images" >
+        <img src="{{serie_moive.image}}" alt="Avatar" class="img-fluid">
+        <div class="name-movie">
+          <p class="text-center">{{serie_moive.name}}</p>
+          <p class="text-center el-name">( {{serie_moive.el_name}} )</p>
         </div>
       </div>
-      <div class="image-name">
-        <div class="name">Hinh 2</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4 col-xs-12 col-sm-12">
-    <div class="images">
-      <img src="../../../assets/images/films/db0835d9ac4807b225dee26701f8e1b7.jpg" alt="Avatar" class="img-fluid">
-      <div class="overlay">
-        <div class="text">
-          <div class="row">
-            <a class="btn btn-primary btn-trailer">Primary</a>
-            <a class="btn btn-danger btn-watch-movie">Danger</a>
-          </div>
-        </div>
-      </div>
-      <div class="image-name">
-        <div class="name">Hinh 2</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4 col-xs-12 col-sm-12">
-    <div class="images">
-      <img src="../../../assets/images/films/db0835d9ac4807b225dee26701f8e1b7.jpg" alt="Avatar" class="img-fluid">
-      <div class="overlay">
-        <div class="text">
-          <div class="row">
-            <a class="btn btn-primary btn-trailer">Primary</a>
-            <a class="btn btn-danger btn-watch-movie">Danger</a>
-          </div>
-        </div>
-      </div>
-      <div class="image-name">
-        <div class="name">Hinh 2</div>
-      </div>
-    </div>
+    </a>
   </div>
 </div>
 
