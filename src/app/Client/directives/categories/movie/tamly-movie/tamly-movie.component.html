@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6" *ngFor="let mentality_movie of mentality_movies">
+    <div class="images" >
+      <a routerLink="/xem-phim">
+        <img src="{{mentality_movie.image}}" alt="Avatar" class="img-fluid">
+        <div class="name-movie">
+          <p class="text-center">{{mentality_movie.name}}</p>
+          <p class="text-center el-name">( {{mentality_movie.el_name}} )</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+

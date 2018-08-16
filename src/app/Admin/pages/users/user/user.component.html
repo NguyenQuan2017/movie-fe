@@ -1,0 +1,150 @@
+<div class="users ">
+  <div class="breadcrumbs">
+    <h1 class="font-weight-bold">Admin > Users</h1>
+    <a href="javascript:void(0)" (click)="toggleAction()" class="float-right btn-add"><i class="fa fa-plus-square "></i></a>
+  </div>
+  <div [@toggleAction]= 'state' class="toggle-action">
+    <form novalidate [formGroup]="userForm" (ngSubmit)="clicked ? EditUserSubmit($event) : AddUserSubmit($event) " enctype="multipart/form-data">
+      <div class="form-group" [class.has-danger]="firstName?.invalid && (firstName?.dirty || firstName?.touched)" [class.has-success]="firstName?.valid && (firstName?.dirty || firstName?.touched)" >
+        <label>First Name</label>
+        <input type="text" class="form-control" formControlName="firstName"  placeholder="Enter your first name" required>
+        <p class="col alert alert-danger" role="alert"
+             *ngIf="firstName?.errors?.required && firstName?.touched">
+          First Name is required!
+        </p>
+      </div>
+      <div class="form-group"  [ngClass]="{
+        'has-danger': lastName?.invalid && (lastName?.dirty || lastName?.touched),
+        'has-success': lastName?.valid && (lastName?.dirty || lastName?.touched)
+      }">
+        <label>Last Name</label>
+        <input type="text" class="form-control" formControlName="lastName" placeholder="Enter your last name" required>
+        <p class="col alert alert-danger" role="alert"
+             *ngIf="lastName?.errors?.required && lastName?.touched">
+          User Name is required!
+        </p>
+      </div>
+      <div class="form-group" [ngClass]="{
+        'has-danger': userName?.invalid && (userName?.dirty || userName?.touched),
+        'has-success': userName?.valid && (userName?.dirty || userName?.touched)
+      }">
+        <label>User Name</label>
+        <input type="text" class="form-control" formControlName="userName" placeholder="Enter your user name" required>
+        <p class="col alert alert-danger" role="alert"
+             *ngIf="userName?.errors?.required && userName?.touched">
+          Last Name is required!
+
+        </p>
+        <p class="col alert alert-danger" *ngIf="userName?.errors?.minlength ">
+          UserName must be 6 characters long
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Avatar</label>
+        <input type="file" (change)="onSelectedFile($event)" class="form-control" #avatarInput>
+
+      </div>
+      <div class="form-group" [ngClass]="{
+        'has-danger': email?.invalid && (email?.dirty || email?.touched),
+        'has-success': email?.valid && (email?.dirty || email?.touched)
+      }">
+        <label>Email address</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter your email" required>
+        <p class="col alert alert-danger" role="alert"
+             *ngIf="email?.errors?.required && email?.touched">
+          Last Name is required!
+        </p>
+        <p *ngIf="email?.errors?.pattern">The email address must contain at least the @ character</p>
+      </div>
+      <div class="form-group" [ngClass]="{
+        'has-danger': password?.invalid && (password?.dirty || password?.touched),
+        'has-success': password?.valid && (password?.dirty || password?.touched)
+      }" >
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Enter your password"  required [attr.disabled]="is_edit=== true ? 'false' : null">
+          <p class=" alert alert-danger" *ngIf="password?.errors?.required  && password?.touched">Password is required</p>
+          <p class=" alert alert-danger" *ngIf="password?.errors?.minlength">Password must be 8 characters long</p>
+      </div>
+      <div class="form-group">
+        <select multiple   name="" id="" class="form-control" formControlName="roleName">
+          <option *ngFor="let role of roles" [ngValue]="role.id" [attr.disabled]="is_edit=== true ? 'false' : null" >{{role.name}}</option>
+        </select>
+      </div>
+      <button type="button" (click)="reset()" class="btn btn-reset float-right">Reset</button>
+      <button type="submit" class="btn btn-save float-right">Save</button>
+    </form>
+  </div>
+  <div class="list-users">
+    <table class="table table-bordered table-responsive-lg">
+      <thead class="table-dark">
+      <tr class="m-0">
+        <th class="w-10 text-uppercase">id</th>
+        <th class="w-10 text-uppercase">username</th>
+        <th class="w-10 text-uppercase">first name</th>
+        <th class="w-10 text-uppercase">last name</th>
+        <th class="w-15 text-uppercase">email</th>
+        <th class="w-5 text-uppercase">user status</th>
+        <th class="w-5 text-uppercase">roles</th>
+        <th class="w-5 text-uppercase">avatar</th>
+        <th class="w-10 text-uppercase">date created</th>
+        <th class="w-10 text-uppercase">date updated</th>
+        <th class="w-10 text-uppercase">action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="m-0" *ngFor="let user of users, let i = index">
+        <td class="w-10">{{ user.id }}</td>
+        <td class="w-10">{{ user.user_name }}</td>
+        <td class="w-10">{{ user.first_name }}</td>
+        <td class="w-10">{{ user.last_name }}</td>
+        <td class="w-15">{{ user.email }}</td>
+        <td class="w-5"><i class="fa" [class.fa-check-circle]="user.user_status === 1"
+        [class.fa-times-circle]="user.user_status === 0"></i></td>
+        <td class="w-10" ><a class=" btn-role" *ngFor="let role of user.roles">{{role.name}}</a></td>
+        <td class="w-5"><a href="{{user.avatar}}" target="_blank"><img src="{{user.avatar}}" [height]="46" [width]="46" alt=""></a></td>
+        <td class="w-15">{{user.created_at}}</td>
+        <td class="w-15">{{user.updated_at}}</td>
+        <td class="w-20">
+          <a type="button" class="btn btn-dark" (click)="editUser(user, user.id)">Edit</a>
+          <a type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Remove</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="history">
+    <a href="javascript:void(0)" (click)="toggleHistory()" class="btn btn-info btn-history float-right"><i class="fa fa-history"></i> History Delete</a>
+    <div class="list-history" [@toggleHistory] = 'state_1'>
+      <table class="table table-bordered table-responsive-lg">
+        <thead class="table-dark">
+        <tr class="m-0">
+          <th class="w-10 text-uppercase">id</th>
+          <th class="w-10 text-uppercase">username</th>
+          <th class="w-10 text-uppercase">first name</th>
+          <th class="w-10 text-uppercase">last name</th>
+          <th class="w-20 text-uppercase">email</th>
+          <th class="w-5 text-uppercase">user status</th>
+          <th class="w-20 text-uppercase">date deleted</th>
+          <th class="w-20 text-uppercase">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="m-0" *ngFor="let history of histories">
+          <td class="w-10">{{ history.id }}</td>
+          <td class="w-10">{{ history.user_name }}</td>
+          <td class="w-10">{{ history.first_name }}</td>
+          <td class="w-10">{{ history.last_name }}</td>
+          <td class="w-20">{{ history.email }}</td>
+          <td class="w-5"><i class="fa" [class.fa-check-circle]="history.user_status === 1"
+                             [class.fa-times-circle]="history.user_status === 0"></i></td>
+          <td class="w-20">{{history.deleted_at}}</td>
+          <td class="w-20">
+            <a type="button" (click)="restoreUser(history.id)" class="btn btn-info btn-restore">Restore</a>
+            <a type="button" class="btn btn-danger btn-delete" (click)="deleteUserHistory(history.id)" >Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

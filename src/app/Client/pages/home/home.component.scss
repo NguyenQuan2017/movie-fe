@@ -1,0 +1,33 @@
+.header {
+  height: 150px;
+}
+
+.banner-ads {
+  height: 200px;
+  background-color: #262626;
+}
+.movies-content{
+  margin-top: 100px;
+}
+.series-movie, .movie, .movie-theaters, .movie-anime {
+  border-bottom: 1px solid rgba(140,136,136,0.9);
+  background-color: #262525;
+}
+.title {
+  width: 100%;
+  background-color: #f5e458;
+  margin-top: 20px;
+  h3{
+    margin-left: 5px;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    a {
+      color: black;
+    }
+    a:hover {
+      text-decoration: none;
+      color: #4e4c4c;
+    }
+  }
+}

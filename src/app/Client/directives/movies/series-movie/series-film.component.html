@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-3 col-sm-4" *ngFor="let serie_moive of series_movies">
+    <div class="images" >
+      <a routerLink="/xem-phim">
+        <img src="{{serie_moive.image}}" alt="Avatar" class="img-fluid">
+        <div class="name-movie">
+          <p class="text-center">{{serie_moive.name}}</p>
+          <p class="text-center el-name">( {{serie_moive.el_name}} )</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+

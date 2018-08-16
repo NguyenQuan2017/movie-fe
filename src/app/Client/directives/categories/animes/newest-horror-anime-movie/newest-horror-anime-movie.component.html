@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6" *ngFor="let newest_horror_anime_movies of newest_horror_anime_movies">
+    <div class="images" >
+      <a routerLink="/xem-phim">
+        <img src="{{newest_horror_anime_movies.image}}" alt="Avatar" class="img-fluid">
+        <div class="name-movie">
+          <p class="text-center">{{newest_horror_anime_movies.name}}</p>
+          <p class="text-center el-name">( {{newest_horror_anime_movies.el_name}} )</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+

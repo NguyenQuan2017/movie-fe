@@ -1,0 +1,105 @@
+<div class="films">
+  <div class="breadcrumbs">
+    <h1 class="font-weight-bold">Admin > Films</h1>
+    <a href="javascript:void(0)" (click)="toggleAction()" class="float-right btn-add"><i class="fa fa-plus-square "></i></a>
+  </div>
+  <div [@toggleAction]= 'state' class="toggle-action">
+    <form novalidate [formGroup]="FilmForm" (ngSubmit)="clicked ? EditFilmSubmit($event) : AddFilmSubmit($event) " enctype="multipart/form-data">
+      <div class="form-group" [class.has-danger]="filmName?.invalid && (filmName?.dirty || filmName?.touched)" [class.has-success]="filmName?.valid && (filmName?.dirty || filmName?.touched)" >
+        <label>Name Film</label>
+        <input type="text" class="form-control" formControlName="filmName"  placeholder="Enter your first name" required>
+        <p class="col alert alert-danger" role="alert"
+           *ngIf="filmName?.errors?.required && filmName?.touched">
+          Film name is required
+        </p>
+      </div>
+      <div class="form-group"  [ngClass]="{
+        'has-danger': filmNameEl?.invalid && (filmNameEl?.dirty || filmNameEl?.touched),
+        'has-success': filmNameEl?.valid && (filmNameEl?.dirty || filmNameEl?.touched)
+      }">
+        <label>Name Film EL</label>
+        <input type="text" class="form-control" formControlName="filmNameEl" placeholder="Enter your last name" required>
+        <p class="col alert alert-danger" role="alert"
+           *ngIf="filmNameEl?.errors?.required && filmNameEl?.touched">
+          Film name El is required!
+        </p>
+      </div>
+      <div class="form-group" >
+        <editor apiKey="ewoa2no0i55sidcz8m4e3pdfuvv5qv7m4gwu2qcmo44eouc8" [innerHTML]=""  formControlName="description"></editor>
+      </div>
+
+      <div class="form-group" >
+        <label>Image</label>
+        <input type="file" (change)="onSelectedFile($event)" class="form-control" [attr.disabled]="is_edit=== true ? 'false' : null">
+      </div>
+      <button type="button" (click)="reset()" class="btn btn-reset float-right">Reset</button>
+      <button type="submit" class="btn btn-save float-right">Save</button>
+    </form>
+  </div>
+  <div class="list-films">
+    <table class="table table-bordered table-responsive-lg">
+      <thead class="table-dark">
+      <tr class="m-0">
+        <th class="w-10 text-uppercase">id</th>
+        <th class="w-10 text-uppercase">name film</th>
+        <th class="w-10 text-uppercase">name film english</th>
+        <th class="w-20 text-uppercase">Description</th>
+        <th class="w-15 text-uppercase">image</th>
+        <th class="w-10 text-uppercase">date created</th>
+        <th class="w-10 text-uppercase">date updated</th>
+        <th class="w-10 text-uppercase">action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="m-0" *ngFor="let film of films, let i = index">
+        <td class="w-10">{{ film.id }}</td>
+        <td class="w-10">{{ film.film_name }}</td>
+        <td class="w-10">{{ film.film_name_el }}</td>
+        <td class="w-20">{{ film.description}}</td>
+        <td class="w-15"><img src="{{film.image['link']}}" [height]="150" [width]="100" alt=""></td>
+        <td class="w-15">{{film.created_at}}</td>
+        <td class="w-15">{{film.updated_at}}</td>
+        <td class="w-20">
+          <a type="button" class="btn btn-dark" (click)="editFilm(film, film.id)">Edit</a>
+          <a type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Remove</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="history">
+    <a href="javascript:void(0)" (click)="toggleHistory()" class="btn btn-info btn-history float-right"><i class="fa fa-history"></i> History Delete</a>
+    <div class="list-history" [@toggleHistory] = 'state_1'>
+      <table class="table table-bordered table-responsive-lg">
+        <thead class="table-dark">
+        <tr class="m-0">
+          <th class="w-10 text-uppercase">id</th>
+          <th class="w-10 text-uppercase">username</th>
+          <th class="w-10 text-uppercase">first name</th>
+          <th class="w-10 text-uppercase">last name</th>
+          <th class="w-20 text-uppercase">email</th>
+          <th class="w-5 text-uppercase">user status</th>
+          <th class="w-20 text-uppercase">date deleted</th>
+          <th class="w-20 text-uppercase">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="m-0" *ngFor="let history of histories">
+          <td class="w-10">{{ history.id }}</td>
+          <td class="w-10">{{ history.user_name }}</td>
+          <td class="w-10">{{ history.first_name }}</td>
+          <td class="w-10">{{ history.last_name }}</td>
+          <td class="w-20">{{ history.email }}</td>
+          <td class="w-5"><i class="fa" [class.fa-check-circle]="history.user_status === 1"
+                             [class.fa-times-circle]="history.user_status === 0"></i></td>
+          <td class="w-20">{{history.deleted_at}}</td>
+          <td class="w-20">
+            <a type="button" (click)="restoreUser(history.id)" class="btn btn-info btn-restore">Restore</a>
+            <a type="button" class="btn btn-danger btn-delete" (click)="deleteUserHistory(history.id)" >Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

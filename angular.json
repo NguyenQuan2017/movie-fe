@@ -27,13 +27,20 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/font-awesome/css/font-awesome.css",
+              "./node_modules/videogular2/fonts/videogular.css",
+              "src/assets/css/reset.scss",
               "src/styles.scss"
             ],
             "scripts": [
+              "./src/assets/js/modernizr.js",
               "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/tether/dist/js/tether.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
               "./node_modules/jquery-viewport-checker/src/jquery.viewportchecker.js",
-              "src/assets/js/app.js"
+              "src/assets/js/app.js",
+              "./node_modules/jquery-menu-aim/jquery.menu-aim.js",
+              "src/assets/js/admin.js"
 
             ]
           },

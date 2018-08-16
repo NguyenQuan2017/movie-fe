@@ -1,6 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+
+body::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+a {
+  color: #1784c7;
+  text-decoration: none !important;
+
+}
+a:hover {
+  cursor: pointer;
+}
+
+input, option, select{
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem !important;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+a {
+  color: #1784c7;
+  text-decoration: none !important;
+
+}
+
+.btn-add {
+  font-size: 30px;
+  margin-top: -35px;
+  margin-right: 2px;
+  padding-bottom: 5px;
+  color: #f5e458;
+}
+.btn-add:hover {
+  color: #f5e458;
+}
+.btn-save {
+  background-color: #f5e458;
+}
+.toggle-action {
+  margin-top: 50px;
+  width: 100%;
+  margin-bottom: 50px;
+  font-size: 17px;
+  height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.055);
+}
+.btn-reset {
+  margin-left: 5px;
+}
+.btn-restore {
+  margin: 5px;
+}
+.btn-delete {
+  margin:5px;
+}
+.has-danger {
+  color: red;
+}
+.has-success {
+  color: green;
+}
+
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
 body {
   font-family: 'Arsenal', sans-serif;
   background-color: #3e3e3e ;
@@ -127,4 +214,73 @@ body {
 }
 .visible{
   opacity:1;
+}
+
+
+.nav-item a {
+  color: white;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #1f1e1a;
+  background-color: #f5e458;
+  border-color: #f5e458 #f5e458 #f5e458;
+}
+.tab-content {
+  color: white;
+  background-color: #262626;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #f5e458;
+  background-color:#262626 ;
+}
+
+// page admin
+.users, .categories, .genres, .films{
+  margin-top: 50px;
+  padding: 0 auto;
+  .breadcrumbs {
+    line-height: 30px;
+    margin-bottom: 20px;
+    background-color: #3e454c;
+    h1 {
+      color: #fff;
+      padding:5px;
+      font-size: 17px;
+    }
+    .icon-add {
+      color: #000;
+      font-size: 20px;
+    }
+  }
+  .list-users, .list-category, .list-genres, .list-films, .btn {
+    font-size: 17px;
+    a {
+      margin: 5px;
+    }
+    .fa-check-circle {
+      color: green !important;
+    }
+
+  }
+  .list-users, .list-history {
+    .fa-check-circle {
+      color: green !important;
+    }
+    .fa-times-circle {
+      color: red !important;
+    }
+    .btn-role {
+      font-size: 1.6rem;
+      background-color: #d2d1cd;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
+  .btn-history {
+    margin-bottom: 50px;
+  }
+  .list-history {
+    height: 0;
+    overflow: hidden;
+  }
 }

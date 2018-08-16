@@ -1,0 +1,90 @@
+<div class="genres">
+  <div class="breadcrumbs">
+    <h1 class="font-weight-bold">Admin > genres</h1>
+    <a href="javascript:void(0)" (click)="toggleAction()" class="float-right btn-add"><i class="fa fa-plus-square "></i></a>
+  </div>
+  <div [@toggleAction]= 'state' class="toggle-action">
+    <form novalidate [formGroup]="genreForm" (ngSubmit)="clicked ? EditGenreSubmit($event) : AddGenreSubmit($event) " enctype="multipart/form-data">
+      <div class="form-group" [class.has-danger]="genreName?.invalid && (genreName?.dirty || genreName?.touched)" [class.has-success]="genreName?.valid && (genreName?.dirty || genreName?.touched)" >
+        <label>First Name</label>
+        <input type="text" class="form-control" formControlName="genreName"  placeholder="Enter your first name" required>
+        <p class="col alert alert-danger" role="alert"
+           *ngIf="genreName?.errors?.required && genreName?.touched">
+          First Name is required!
+        </p>
+      </div>
+
+      <div class="form-group">
+        <fieldset class="form-group">
+          <legend>Choose your category</legend>
+          <div class="row">
+            <div *ngFor="let category of categories" class="form-check col-2">
+              <label class="form-check-label">
+                <input type="checkbox" #checkbox (change)="onChange(category.id, $event.target.checked)"> {{category.cate_name}}
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button type="button" (click)="reset($event)" class="btn btn-reset float-right">Reset</button>
+      <button type="submit" class="btn btn-save float-right">Save</button>
+    </form>
+  </div>
+  <div class="list-genres">
+    <table class="table table-bordered table-responsive-lg">
+      <thead class="table-dark">
+      <tr class="m-0">
+        <th class="w-10 text-uppercase">id</th>
+        <th class="w-15 text-uppercase">genre name</th>
+        <th class="w-15 text-uppercase">slug</th>
+        <th class="w-10 text-uppercase">categories</th>
+        <th class="w-20 text-uppercase">date created</th>
+        <th class="w-20 text-uppercase">date updated</th>
+        <th class="w-10 text-uppercase">action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="m-0" *ngFor="let genre of genres, let i = index">
+        <td class="w-10">{{ genre.id }}</td>
+        <td class="w-15">{{ genre.genre_name }}</td>
+        <td class="w-15">{{ genre.slug }}</td>
+        <td class="w-10"><a class="btn btn-category" *ngFor="let category of genre.categories">{{category.cate_name}}</a></td>
+        <td class="w-15">{{genre.created_at}}</td>
+        <td class="w-15">{{genre.updated_at}}</td>
+        <td class="w-20">
+          <a type="button" class="btn btn-dark" (click)="editGenre(genre, genre.id, $event)">Edit</a>
+          <a type="button" class="btn btn-danger" (click)="removeGenre(genre.id)">Remove</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="history">
+    <a href="javascript:void(0)" (click)="toggleHistory()" class="btn btn-info btn-history float-right"><i class="fa fa-history"></i> History Delete</a>
+    <div class="list-history" [@toggleHistory] = 'state_1'>
+      <table class="table table-bordered table-responsive-lg">
+        <thead class="table-dark">
+        <tr class="m-0">
+          <th class="w-10 text-uppercase">id</th>
+          <th class="w-15 text-uppercase">genre name</th>
+          <th class="w-15 text-uppercase">slug</th>
+          <th class="w-10 text-uppercase">date deleted</th>
+          <th class="w-20 text-uppercase">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="m-0" *ngFor="let history of histories">
+          <td class="w-10">{{ history.id }}</td>
+          <td class="w-10">{{ history.genre_name }}</td>
+          <td class="w-10">{{ history.slug }}</td>
+          <td class="w-20">{{history.deleted_at}}</td>
+          <td class="w-20">
+            <a type="button" (click)="restoreGenre(history.id)" class="btn btn-info btn-restore">Restore</a>
+            <a type="button" class="btn btn-danger btn-delete" (click)="deleteGenre(history.id)" >Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

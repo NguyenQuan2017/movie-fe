@@ -1,0 +1,39 @@
+h2 {
+  line-height: 20px;
+  padding: 10px;
+  background-color: #181818;
+  color: white;
+}
+.btn-tag {
+  height:31px;
+  border-radius: 0;
+  line-height:27px;
+  vertical-align:middle;
+  text-align:center;
+  padding:0 15px;
+  color: black;
+  background-color:#f5e458;
+  position:relative;
+  display:inline-block;
+  margin-bottom: 20px;
+}
+.btn-tag:after {
+  position:absolute;
+  right:-16px;
+  content:" ";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent transparent transparent #f5e458;
+}
+.btn-tag:hover {
+  background-color:#f5e458;
+}
+.btn-tag:hover:after {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent transparent transparent #f5e458;
+}
