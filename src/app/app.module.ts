@@ -84,6 +84,9 @@ import { CategoryComponent } from './Admin/pages/categories/category/category.co
 import { GenreComponent } from './Admin/pages/genres/genre/genre.component';
 import { FilmComponent } from './Admin/pages/films/film/film.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
+import { ImageComponent } from './Admin/pages/films/image/image.component';
+import { FilmsComponent } from './Admin/pages/films/films.component';
+import { InformationComponent } from './Admin/pages/films/information/information.component';
 
 @NgModule({
   declarations: [
@@ -154,6 +157,9 @@ import {EditorModule} from '@tinymce/tinymce-angular';
     CategoryComponent,
     GenreComponent,
     FilmComponent,
+    ImageComponent,
+    FilmsComponent,
+    InformationComponent,
   ],
   imports: [
     BrowserModule,

@@ -48,6 +48,7 @@ export class FilmComponent implements OnInit {
 
   ngOnInit() {
       this.getAllListFilm();
+      this.getAllListFilmRemoved();
   }
 
   toggleAction() {
@@ -93,6 +94,14 @@ export class FilmComponent implements OnInit {
       });
   }
 
+  getAllListFilmRemoved(): any {
+      return this.filmService.getAllListFilmsRemoved().subscribe(data => {
+          console.log(data);
+          this.histories = data.data.history_films;
+          console.log(this.histories);
+      });
+  }
+
   AddFilmSubmit() {
       return this.filmService.createFilm(this.FilmForm.value).subscribe(data => {
           this.getAllListFilm();
@@ -110,10 +119,35 @@ export class FilmComponent implements OnInit {
       });
   }
 
-    EditFilmSubmit(): any {
-      this.filmService.EditFilm(this.FilmForm.value, this.editIndex).subscribe(data => {
+  EditFilmSubmit(): any {
+      this.filmService.editFilm(this.FilmForm.value, this.editIndex).subscribe(data => {
           this.getAllListFilm();
       });
       this.clicked = true;
-    }
+  }
+
+  removeFilm(id): any {
+      return this.filmService.removeFilm(id).subscribe(data => {
+          this.getAllListFilm();
+          this.getAllListFilmRemoved();
+      });
+  }
+
+  restoreFilm(id): any {
+      return this.filmService.restoreFilm(id).subscribe(data => {
+          this.getAllListFilm();
+          this.getAllListFilmRemoved();
+      });
+  }
+
+  deleteFilm(id): any {
+      return this.filmService.deleteFilm(id).subscribe(data => {
+          this.getAllListFilmRemoved();
+      });
+  }
+
+  reset() {
+      this.FilmForm.reset();
+      this.is_edit = false;
+  }
 }

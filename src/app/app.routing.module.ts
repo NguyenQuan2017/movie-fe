@@ -17,6 +17,9 @@ import {UserComponent} from './Admin/pages/users/user/user.component';
 import {CategoryComponent} from './Admin/pages/categories/category/category.component';
 import {GenreComponent} from './Admin/pages/genres/genre/genre.component';
 import {FilmComponent} from './Admin/pages/films/film/film.component';
+import {ImageComponent} from './Admin/pages/films/image/image.component';
+import {FilmsComponent} from './Admin/pages/films/films.component';
+import {InformationComponent} from './Admin/pages/films/information/information.component';
 
 
 const routes: Routes = [
@@ -34,7 +37,11 @@ const routes: Routes = [
             { path: 'users', component: UserComponent},
             { path: 'categories', component: CategoryComponent},
             { path: 'genres', component: GenreComponent},
-            { path: 'films', component: FilmComponent},
+            { path: 'films', component: FilmsComponent, children: [
+                { path: '', component: FilmComponent},
+                { path: 'images', component: ImageComponent},
+                { path: 'informations', component: InformationComponent}
+            ]},
             { path: '', redirectTo: '', pathMatch: 'full'}
         ]},
     { path: 'admin/login', component: LoginComponent},

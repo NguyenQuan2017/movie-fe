@@ -235,7 +235,7 @@ body {
 }
 
 // page admin
-.users, .categories, .genres, .films{
+.users, .categories, .genres, .films, .films-images, .films-information{
   margin-top: 50px;
   padding: 0 auto;
   .breadcrumbs {
@@ -252,7 +252,7 @@ body {
       font-size: 20px;
     }
   }
-  .list-users, .list-category, .list-genres, .list-films, .btn {
+  .list-users, .list-category, .list-genres, .list-films, .list-images, .list-information-film, .btn {
     font-size: 17px;
     a {
       margin: 5px;

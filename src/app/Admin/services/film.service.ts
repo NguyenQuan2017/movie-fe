@@ -19,11 +19,27 @@ export class FilmService {
     return this.http.get(this.rootUrl + 'film', this.httpOptions);
   }
 
+  getAllListFilmsRemoved(): any {
+      return this.http.get(this.rootUrl + 'history/film/list', this.httpOptions);
+  }
+
   createFilm(data): any {
     return this.http.post(this.rootUrl + 'film', data, this.httpOptions);
   }
 
-  EditFilm(data, id): any {
+  editFilm(data, id): any {
       return this.http.put(this.rootUrl + 'film/' + id, data, this.httpOptions);
+  }
+
+  removeFilm(id): any {
+      return this.http.delete(this.rootUrl + 'film/' + id, this.httpOptions);
+  }
+
+  restoreFilm(id): any {
+      return this.http.put(this.rootUrl + 'history/film/restore/' + id, this.httpOptions);
+  }
+
+  deleteFilm(id): any {
+      return this.http.delete(this.rootUrl + 'history/film/delete/' + id, this.httpOptions);
   }
 }
