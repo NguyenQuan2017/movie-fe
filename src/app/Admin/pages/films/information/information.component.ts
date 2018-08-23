@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, Pipe} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Form, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable, range} from 'rxjs';
 import {InformationService} from '../../../services/information.service';
+import {$} from 'protractor';
+import {EditorModule} from '@tinymce/tinymce-angular';
 
 @Component({
   selector: 'app-information',
@@ -28,6 +30,7 @@ import {InformationService} from '../../../services/information.service';
       ]),
   ]
 })
+
 export class InformationComponent implements OnInit {
 
   state = 'small';
@@ -35,6 +38,7 @@ export class InformationComponent implements OnInit {
   informations: any;
   films: any;
   histories: any;
+  limit = 200;
   i;
   editIndex: null;
   years = [];
@@ -46,7 +50,8 @@ export class InformationComponent implements OnInit {
   episodeNumber: FormControl;
   filmName: FormControl;
   highDefinition: FormControl;
-  constructor(private fb: FormBuilder, private informationService: InformationService) {
+
+  constructor(private fb: FormBuilder, private informationService: InformationService, private cd: ChangeDetectorRef) {
     this.createdForm();
     this.createdYear();
     this.createHighDefinition();
@@ -66,6 +71,10 @@ export class InformationComponent implements OnInit {
       this.state_1 = (this.state_1 === 'hidden' ? 'show' : 'hidden');
   }
 
+  Show() {
+      this.state = 'large';
+  }
+
   createdForm() {
     this.InformationForm = this.fb.group({
       content: this.content,
@@ -83,7 +92,7 @@ export class InformationComponent implements OnInit {
   }
 
   createHighDefinition() {
-    this.highDefinitions = ['HD', 'Full HD', 'CAM'];
+    this.highDefinitions = ['HD', 'Full HD', 'CAM', 'HD 720'];
   }
 
   getListInformationFilm(): any {
@@ -109,9 +118,11 @@ export class InformationComponent implements OnInit {
       this.getListInformationFilm();
     });
   }
+
   editInformation(information, id): any {
     this.clicked = true;
     this.editIndex = id;
+    this.Show();
     this.InformationForm.patchValue({
         content: information.content,
         year: information.year,
@@ -119,14 +130,50 @@ export class InformationComponent implements OnInit {
         episodeNumber: information.episode_number,
         filmName: information.film['id']
     });
-    console.log(this.InformationForm.value);
     window.scroll(0, 0);
   }
 
   EditInformationSubmit(): any {
+    console.log(this.InformationForm.value);
     this.informationService.editInformationFilm(this.InformationForm.value, this.editIndex).subscribe(data => {
       this.getListInformationFilm();
     });
     this.clicked = true;
+    this.InformationForm.reset();
+    this.InformationForm.patchValue( {
+      content: '',
+    });
   }
+
+  uploadImage() {
+
+  }
+
+  removeInformation(id): any {
+      return this.informationService.removeInformation(id).subscribe(data => {
+          this.getListInformationFilm();
+          this.getListInformationRemoved();
+      });
+  }
+
+  restoreInformation(id): any {
+      return this.informationService.restoreInformation(id).subscribe(data => {
+          this.getListInformationRemoved();
+          this.getListInformationFilm();
+      });
+  }
+
+  deleteInformation(id): any {
+      return this.informationService.deleteInformation(id).subscribe(data => {
+          this.getListInformationRemoved();
+      });
+  }
+  reset() {
+      this.clicked = false;
+      this.InformationForm.reset();
+      this.InformationForm.patchValue( {
+          content: '',
+      });
+  }
+
 }

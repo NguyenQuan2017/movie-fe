@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-md-3 col-sm-4" *ngFor="let newest_theater_movie of newest_theaters_movies">
+  <div class="col-md-3 col-sm-4" *ngFor="let theater of films">
     <div class="images">
       <a routerLink="/xem-phim">
-        <img src="{{newest_theater_movie.image}}" alt="Avatar" class="img-fluid">
+        <img src="{{theater.image['link']}}" alt="Avatar" class="img-fluid">
         <div class="name-movie">
-          <p class="text-center">{{newest_theater_movie.name}}</p>
-          <p class="text-center el-name">( {{newest_theater_movie.el_name}} )</p>
+          <p class="text-center">{{theater.film_name}}</p>
+          <p class="text-center el-name">( {{theater.film_name_el}} )</p>
         </div>
       </a>
     </div>

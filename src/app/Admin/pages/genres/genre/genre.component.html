@@ -6,8 +6,8 @@
   <div [@toggleAction]= 'state' class="toggle-action">
     <form novalidate [formGroup]="genreForm" (ngSubmit)="clicked ? EditGenreSubmit($event) : AddGenreSubmit($event) " enctype="multipart/form-data">
       <div class="form-group" [class.has-danger]="genreName?.invalid && (genreName?.dirty || genreName?.touched)" [class.has-success]="genreName?.valid && (genreName?.dirty || genreName?.touched)" >
-        <label>First Name</label>
-        <input type="text" class="form-control" formControlName="genreName"  placeholder="Enter your first name" required>
+        <label>Genre Name</label>
+        <input type="text" class="form-control" formControlName="genreName"  placeholder="Enter your genre name" required>
         <p class="col alert alert-danger" role="alert"
            *ngIf="genreName?.errors?.required && genreName?.touched">
           First Name is required!

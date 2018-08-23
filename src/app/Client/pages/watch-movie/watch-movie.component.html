@@ -1,7 +1,7 @@
 <div class="container movies-detail">
-  <div class="row">
+  <div class="row" >
     <div class="breadcrumbs">
-      <h4>Trang chu > chi tiet</h4>
+      <h4><span class="text-capitalize" *ngFor="let category of film.categories">{{category.cate_name}} > </span> {{film.film_name}}</h4>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="row">
@@ -9,6 +9,17 @@
       </div>
       <div class="row">
         <h2 class="col-12 text-uppercase">Thông tin phim</h2>
+      </div>
+      <div class="row">
+        <div class="informations col-12">
+          <h4>{{film.film_name}}</h4>
+         <div class="row">
+           <p class="col-4"><span class="font-weight-bold ">Năm: </span><span>{{film.film_information.year}}</span></p>
+           <p class="col-4"><span class="font-weight-bold">Số tập: </span><span>{{film.film_information.episode_number}}</span></p>
+           <p class="col-4"><span class="font-weight-bold">Chất lượng: </span><span>{{film.film_information.high_definition}}</span></p>
+           <p class="col-4"><span class="font-weight-bold">View: </span><span>{{film.film_information.view}}</span></p>
+         </div>
+        </div>
       </div>
       <div class="movie-content row">
         <div class="col-12">
@@ -27,35 +38,16 @@
 
             <!-- Tab panes -->
             <div class="tab-content col-12">
-              <div id="noi_dung_phim" class="container tab-pane active"><br>
-                <h3><strong>12 Con Khỉ Phần 4,&nbsp;12 Monkeys Season 4 (2018)</strong></h3>
-
-                <p><strong>Phim <a href="http://bilutv.com/phim/12-con-khi-phan-4-6952.html">12 Con Khỉ Phần 4</a>&nbsp;</strong>là một bộ phim khoa học viễn tưởng Mỹ lấy bối cảnh tại tương lai không xa, con người chứng kiến thảm họa kinh hoàng nhất khi gần như toàn bộ dân số trên trái đất tử vong vì bệnh dịch. Chính quyền triệu tập các nhà khoa học tìm cách quay trở lại quá khứ bằng cỗ máy thời gian để tìm nguồn gốc ban đầu của bệnh dịch và tìm kiếm tổ chức đã phát tán loại virus này. Dựa trên phim cùng tên được sản xuất năm 1995 Twelve Monkeys (Brad Pitt, Bruce Willis).</p>
-
-                <p><img class="img-fluid text-center" alt="Xem Phim 12 Con Khỉ Phần 4, 12 Monkeys Season 4" src="../../../assets/images/films/2-201806622.jpg" title="12 Con Khỉ Phần 4, 12 Monkeys Season 4 (2018)"></p>
+              <div id="noi_dung_phim" class="container tab-pane active film-content" [innerHtml]="film.film_information.content">
               </div>
               <div id="dien_vien" class="container tab-pane fade"><br>
                 <div class="col-12">
                   <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 image-actor text-center">
-                      <img src="../../../assets/images/thumb.jpg" class=" img-fluid" alt="Responsive image">
-                      <h6 class="name-actor">harry storm</h6>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 image-actor text-center">
-                      <img src="../../../assets/images/thumb.jpg" class=" img-fluid" alt="Responsive image">
-                      <h6 class="name-actor">harry storm</h6>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 image-actor text-center">
-                      <img src="../../../assets/images/thumb.jpg" class=" img-fluid" alt="Responsive image">
-                      <h6 class="name-actor">harry storm</h6>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 image-actor text-center">
-                      <img src="../../../assets/images/thumb.jpg" class=" img-fluid" alt="Responsive image">
-                      <h6 class="name-actor">harry storm</h6>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 image-actor text-center">
-                      <img src="../../../assets/images/thumb.jpg" class=" img-fluid" alt="Responsive image">
-                      <h6 class="name-actor">harry storm</h6>
+                    <div *ngFor="let actor of film.actors" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 image-actor text-center">
+                      <a href="javascript:void(0)">
+                        <img src="{{actor.image}}" class=" img-fluid" alt="Responsive image">
+                        <h4 class="name-actor">{{actor.actor_name}}</h4>
+                      </a>
                     </div>
                   </div>
                 </div>

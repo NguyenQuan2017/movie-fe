@@ -1,11 +1,27 @@
- <ngx-carousel [inputs]="carouselTileOne" (carouselLoad)="carouselTileOneLoad()">
-        <ngx-tile NgxCarouselItem *ngFor="let tile of carouselTileOneItems;">
-            <div class="wBg">
-                <div class="tile" [style.background]="'url(' + tile + ')'">
-                </div>
-                <h4>Tile</h4>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="carousel-item active" >
+            <img  src="{{item.poster.link}}" class="img-fluid">
+            <div class="carousel-caption">
+                <h4><a href="#">{{ item.film_name }}</a></h4>
+                <p [innerHtml]="item.description"></p>
             </div>
-        </ngx-tile>
-        <button NgxCarouselPrev class="leftRs"><img src="../../../assets/images/arrow_left.png" alt=""></button>
-        <button NgxCarouselNext class="rightRs"><img src="../../../assets/images/arrow_right.png" alt=""></button>
- </ngx-carousel>
+        </div><!-- End Item -->
+
+        <div class="carousel-item" *ngFor="let film of films">
+            <img src="{{film.poster['link']}}" alt="{{film.poster['slug']}}" class="img-fluid">
+            <div class="carousel-caption">
+                <h4><a href="#">{{film.film_name}}</a></h4>
+                <p [innerHtml]="film.description"></p>
+            </div>
+        </div><!-- End Item -->
+
+    </div><!-- End Carousel Inner -->
+    <ul class="list-group col-sm-4">
+        <li data-target="#myCarousel" data-slide-to="0" class="list-group-item active">{{item.film_name_el}}</li>
+        <li *ngFor="let film of films, let i = index" data-target="#myCarousel" [attr.data-slide-to]="i + 1" class="list-group-item"><h4>{{film.film_name_el}}</h4></li>
+
+    </ul>
+
+</div><!-- End Carousel -->

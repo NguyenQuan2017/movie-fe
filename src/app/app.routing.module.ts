@@ -20,12 +20,14 @@ import {FilmComponent} from './Admin/pages/films/film/film.component';
 import {ImageComponent} from './Admin/pages/films/image/image.component';
 import {FilmsComponent} from './Admin/pages/films/films.component';
 import {InformationComponent} from './Admin/pages/films/information/information.component';
+import {PosterComponent} from './Admin/pages/films/poster/poster.component';
+import {ActorComponent} from './Admin/pages/actors/actor/actor.component';
 
 
 const routes: Routes = [
     { path: '', component: IndexComponent, children: [
             { path: '', component: HomeComponent},
-            { path: 'xem-phim', component: WatchMovieComponent },
+            { path: 'xem-phim/:name_film', component: WatchMovieComponent},
             { path: 'danh-muc/:id/phim-bo', component: PhimBoComponent },
             { path: 'danh-muc/:id/phim-le', component: PhimLeComponent },
             { path: 'danh-muc/:id/phim-chieu-rap', component: PhimChieuRapComponent },
@@ -40,8 +42,10 @@ const routes: Routes = [
             { path: 'films', component: FilmsComponent, children: [
                 { path: '', component: FilmComponent},
                 { path: 'images', component: ImageComponent},
-                { path: 'informations', component: InformationComponent}
+                { path: 'informations', component: InformationComponent},
+                { path: 'poster', component: PosterComponent }
             ]},
+            { path: 'actors', component: ActorComponent},
             { path: '', redirectTo: '', pathMatch: 'full'}
         ]},
     { path: 'admin/login', component: LoginComponent},

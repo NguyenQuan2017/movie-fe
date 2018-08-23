@@ -52,6 +52,9 @@
 }
 .movie-content {
   background-color: #262525 ;
+  .film-content {
+    padding: 20px;
+  }
 }
 
 .image-actor img {
@@ -81,4 +84,17 @@
 }
 .related-movie h2 {
   margin-top: 20px;
+}
+.informations {
+  background-color: #262626;
+  height: 250px;
+  padding: 25px;
+  color: #fff;
+  h4 {
+    font-size: 25px;
+    color: #f5e458;
+  }
+  p {
+    font-size: 20px;
+  }
 }

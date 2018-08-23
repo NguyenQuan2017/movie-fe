@@ -23,6 +23,18 @@ export class FilmService {
       return this.http.get(this.rootUrl + 'history/film/list', this.httpOptions);
   }
 
+  getCategories(): any {
+      return this.http.get(this.rootUrl + 'category', this.httpOptions);
+  }
+
+  getGenres(): any {
+      return this.http.get(this.rootUrl + 'genre', this.httpOptions);
+  }
+
+  getActors(): any {
+      return this.http.get(this.rootUrl + 'actor', this.httpOptions);
+  }
+
   createFilm(data): any {
     return this.http.post(this.rootUrl + 'film', data, this.httpOptions);
   }

@@ -87,6 +87,8 @@ import {EditorModule} from '@tinymce/tinymce-angular';
 import { ImageComponent } from './Admin/pages/films/image/image.component';
 import { FilmsComponent } from './Admin/pages/films/films.component';
 import { InformationComponent } from './Admin/pages/films/information/information.component';
+import { PosterComponent } from './Admin/pages/films/poster/poster.component';
+import { ActorComponent } from './Admin/pages/actors/actor/actor.component';
 
 @NgModule({
   declarations: [
@@ -160,6 +162,8 @@ import { InformationComponent } from './Admin/pages/films/information/informatio
     ImageComponent,
     FilmsComponent,
     InformationComponent,
+    PosterComponent,
+    ActorComponent,
   ],
   imports: [
     BrowserModule,

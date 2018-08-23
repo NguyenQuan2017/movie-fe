@@ -4,7 +4,7 @@
     <a href="javascript:void(0)" (click)="toggleAction()" class="float-right btn-add"><i class="fa fa-plus-square "></i></a>
   </div>
   <div [@toggleAction]= 'state' class="toggle-action">
-    <form novalidate [formGroup]="FilmForm" (ngSubmit)="clicked ? EditFilmSubmit($event) : AddFilmSubmit($event) " enctype="multipart/form-data">
+    <form id="myForm" novalidate [formGroup]="FilmForm" (ngSubmit)="clicked ? EditFilmSubmit($event) : AddFilmSubmit($event) " enctype="multipart/form-data">
       <div class="form-group" [class.has-danger]="filmName?.invalid && (filmName?.dirty || filmName?.touched)" [class.has-success]="filmName?.valid && (filmName?.dirty || filmName?.touched)" >
         <label>Name Film</label>
         <input type="text" class="form-control" formControlName="filmName"  placeholder="Enter your first name" required>
@@ -25,14 +25,63 @@
         </p>
       </div>
       <div class="form-group" >
-        <editor apiKey="ewoa2no0i55sidcz8m4e3pdfuvv5qv7m4gwu2qcmo44eouc8" [innerHTML]=""  formControlName="description"></editor>
+        <editor apiKey="ewoa2no0i55sidcz8m4e3pdfuvv5qv7m4gwu2qcmo44eouc8" [init]="{
+        theme: 'modern',
+        paste_data_images: true,
+        plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern'
+        ],
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons',
+        image_advtab: true
+        }" formControlName="description"></editor>
       </div>
 
       <div class="form-group" >
         <label>Image</label>
         <input type="file" (change)="onSelectedFile($event)" class="form-control" [attr.disabled]="is_edit=== true ? 'false' : null">
       </div>
-      <button type="button" (click)="reset()" class="btn btn-reset float-right">Reset</button>
+      <div class="form-group">
+        <fieldset class="form-group">
+          <legend>Choose your category</legend>
+          <div class="row">
+            <div *ngFor="let category of categories" class="form-check col-2">
+              <label class="form-check-label">
+                <input type="checkbox" #checkbox (change)="changeCategory(category.id, $event.target.checked)"> {{category.cate_name}}
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="form-group">
+        <fieldset class="form-group">
+          <legend>Choose your genre</legend>
+          <div class="row">
+            <div *ngFor="let genre of genres" class="form-check col-2">
+              <label class="form-check-label">
+                <input type="checkbox" #checkbox (change)="changeGenre(genre.id, $event.target.checked)"> {{genre.genre_name}}
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="form-group">
+        <fieldset class="form-group">
+          <legend>Choose your Actor</legend>
+          <div class="row">
+            <div *ngFor="let actor of actors" class="form-check col-2">
+              <label class="form-check-label">
+                <input type="checkbox" #checkbox (change)="changeActor(actor.id, $event.target.checked)"> {{actor.actor_name}}
+                <img src="{{actor.image}}" [width]="50" [height]="50" alt="">
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button type="button" (click)="reset($event)" class="btn btn-reset float-right">Reset</button>
       <button type="submit" class="btn btn-save float-right">Save</button>
     </form>
   </div>
@@ -40,11 +89,13 @@
     <table class="table table-bordered table-responsive-lg">
       <thead class="table-dark">
       <tr class="m-0">
-        <th class="w-10 text-uppercase">id</th>
-        <th class="w-10 text-uppercase">name film</th>
-        <th class="w-10 text-uppercase">name film english</th>
-        <th class="w-20 text-uppercase">Description</th>
+        <th class="5 text-uppercase">id</th>
+        <th class="w-5 text-uppercase">name film</th>
+        <th class="w-5 text-uppercase">name film english</th>
+        <th class="w-15 text-uppercase">Description</th>
         <th class="w-15 text-uppercase">image</th>
+        <th class="w-10 text-uppercase">categories</th>
+        <th class="w-10 text-uppercase">genres</th>
         <th class="w-10 text-uppercase">date created</th>
         <th class="w-10 text-uppercase">date updated</th>
         <th class="w-10 text-uppercase">action</th>
@@ -52,14 +103,19 @@
       </thead>
       <tbody>
       <tr class="m-0" *ngFor="let film of films, let i = index">
-        <td class="w-10">{{ i }}</td>
-        <td class="w-10">{{ film.film_name }}</td>
-        <td class="w-10">{{ film.film_name_el }}</td>
-        <td class="w-20">{{ film.description}}</td>
+        <td class="w-5">{{ i }}</td>
+        <td class="w-5">{{ film.film_name }}</td>
+        <td class="w-5">{{ film.film_name_el }}</td>
+        <td class="w-15">
+          <p *ngIf="film.description.length <= limit">{{ film.description}}</p>
+          <p *ngIf="film.description.length > limit">{{film.description | slice : 0 : limit}} ... <a href="javascript:void(0)" (click)="editFilm(film, film.id)">More</a></p>
+        </td>
         <td class="w-15"><img src="{{film.image['link']}}" [height]="150" [width]="100" alt=""></td>
-        <td class="w-15">{{film.created_at}}</td>
-        <td class="w-15">{{film.updated_at}}</td>
-        <td class="w-20">
+        <td class="w-10"><a class="btn btn-category" *ngFor="let category of film.categories">{{category.cate_name}}</a></td>
+        <td class="w-10"><a class="btn btn-category" *ngFor="let genre of film.genres">{{genre.genre_name}}</a></td>
+        <td class="w-10">{{film.created_at}}</td>
+        <td class="w-10">{{film.updated_at}}</td>
+        <td class="w-10">
           <a type="button" class="btn btn-dark" (click)="editFilm(film, film.id)">Edit</a>
           <a type="button" class="btn btn-danger" (click)="removeFilm(film.id)">Remove</a>
         </td>

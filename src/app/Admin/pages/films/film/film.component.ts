@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FilmService} from '../../../services/film.service';
 
 @Component({
@@ -32,8 +32,12 @@ export class FilmComponent implements OnInit {
   state = 'small';
   state_1 = 'hidden';
   histories: any;
+  categories: any;
+  genres: any;
+  limit = 150;
   clicked = false;
   films: any;
+  actors: any;
   editIndex: number;
   is_edit = false;
   FilmForm: FormGroup;
@@ -49,6 +53,10 @@ export class FilmComponent implements OnInit {
   ngOnInit() {
       this.getAllListFilm();
       this.getAllListFilmRemoved();
+      this.getCategories();
+      this.getGenres();
+      this.getActors();
+
   }
 
   toggleAction() {
@@ -57,6 +65,10 @@ export class FilmComponent implements OnInit {
 
   toggleHistory() {
       this.state_1 = (this.state_1 === 'hidden' ? 'show' : 'hidden');
+  }
+
+  show() {
+      this.state = 'large';
   }
 
   createFormControls() {
@@ -69,7 +81,10 @@ export class FilmComponent implements OnInit {
         filmName: this.filmName,
         filmNameEl: this.filmNameEl,
         description: this.description,
-        image: null
+        image: null,
+        category: this.fb.array([]),
+        genre: this.fb.array([]),
+        actor: this.fb.array([])
     });
   }
 
@@ -88,12 +103,61 @@ export class FilmComponent implements OnInit {
     }
   }
 
+  changeCategory(id: number, isChecked: boolean) {
+        const categories = <FormArray> this.FilmForm.controls.category;
+        if (isChecked) {
+            categories.push(new FormControl(id));
+        } else {
+            const index = categories.controls.findIndex(x => x.value === id);
+            categories.removeAt(index);
+        }
+  }
+
+
+
+  changeGenre(id: number, isChecked: boolean) {
+      const genres = <FormArray> this.FilmForm.controls.genre;
+      if (isChecked) {
+          genres.push(new FormControl(id));
+      } else {
+          const index = genres.controls.findIndex(x => x.value === id);
+          genres.removeAt(index);
+      }
+  }
+
+  changeActor(id: number, isChecked: boolean) {
+        const actors = <FormArray> this.FilmForm.controls.actor;
+        if (isChecked) {
+            actors.push(new FormControl(id));
+        } else {
+            const index = actors.controls.findIndex(x => x.value === id);
+            actors.removeAt(index);
+        }
+  }
+
+
   getAllListFilm(): any {
       return this.filmService.getAllListFilms().subscribe(data => {
           this.films = data.data.films['data'];
       });
   }
 
+  getCategories(): any {
+      return this.filmService.getCategories().subscribe(data => {
+          this.categories = data.data.categories;
+      });
+  }
+
+  getGenres(): any {
+      return this.filmService.getGenres().subscribe(data => {
+          this.genres = data.data.genres;
+      });
+  }
+  getActors(): any {
+      return this.filmService.getActors().subscribe(data => {
+          this.actors = data.data.actors;
+      });
+  }
   getAllListFilmRemoved(): any {
       return this.filmService.getAllListFilmsRemoved().subscribe(data => {
           console.log(data);
@@ -103,6 +167,7 @@ export class FilmComponent implements OnInit {
   }
 
   AddFilmSubmit() {
+      console.log(this.FilmForm.value);
       return this.filmService.createFilm(this.FilmForm.value).subscribe(data => {
           this.getAllListFilm();
       });
@@ -111,15 +176,18 @@ export class FilmComponent implements OnInit {
   editFilm(film: any, id: number) {
       this.clicked = true;
       this.is_edit = true;
+      this.show();
       this.editIndex = id;
       this.FilmForm.patchValue({
           filmName: film.film_name,
           filmNameEl: film.film_name_el,
           description: film.description
       });
+      window.scroll(0, 0);
   }
 
   EditFilmSubmit(): any {
+      console.log(this.FilmForm.value);
       this.filmService.editFilm(this.FilmForm.value, this.editIndex).subscribe(data => {
           this.getAllListFilm();
       });
@@ -146,8 +214,13 @@ export class FilmComponent implements OnInit {
       });
   }
 
-  reset() {
+    reset(e) {
       this.FilmForm.reset();
+      this.FilmForm.patchValue( {
+          description: '',
+      });
       this.is_edit = false;
+      this.clicked = false;
   }
+
 }

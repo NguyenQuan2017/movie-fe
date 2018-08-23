@@ -13,7 +13,21 @@
       </div>
       <div class="form-group" >
         <label>Content</label>
-        <editor apiKey="ewoa2no0i55sidcz8m4e3pdfuvv5qv7m4gwu2qcmo44eouc8" [innerHTML]=""  formControlName="content"></editor>
+        <editor apiKey="ewoa2no0i55sidcz8m4e3pdfuvv5qv7m4gwu2qcmo44eouc8" [init]="{
+        theme: 'modern',
+        paste_data_images: true,
+        plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern'
+        ],
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons',
+        image_advtab: true,
+        file_picker_callback: uploadImage()
+        }" formControlName="content"></editor>
+        <input name="image" type="file" id="upload" class="hidden" onchange="">
       </div>
       <div class="form-group">
         <label>Year</label>
@@ -56,7 +70,14 @@
       <tr class="m-0" *ngFor="let information of informations, let i = index">
         <td class="w-10">{{ i }}</td>
         <td class="w-15">{{information.film['film_name']}}</td>
-        <td class="w-25">{{ information.content }}</td>
+        <td class="w-20">
+          <p *ngIf="information.content.length <= limit">
+            {{ information.content }}
+          </p>
+          <p *ngIf="information.content.length > limit ">{{information.content |  slice : 0 : limit}} ... <a
+                 (click)="editInformation(information, information.id)" href="javascript:void(0)">More</a></p>
+          </td>
+
         <td class="w-10">{{ information.year}}</td>
         <td class="w-5">{{ information.high_definition }}</td>
         <td class="w-5">{{ information.view }}</td>
@@ -65,7 +86,7 @@
         <td class="w-15">{{information.updated_at}}</td>
         <td class="w-20">
           <a type="button" class="btn btn-dark" (click)="editInformation(information, information.id)">Edit</a>
-          <a type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Remove</a>
+          <a type="button" class="btn btn-danger" (click)="removeInformation(information.id)">Remove</a>
         </td>
       </tr>
       </tbody>
@@ -78,28 +99,29 @@
         <thead class="table-dark">
         <tr class="m-0">
           <th class="w-10 text-uppercase">id</th>
-          <th class="w-10 text-uppercase">username</th>
-          <th class="w-10 text-uppercase">first name</th>
-          <th class="w-10 text-uppercase">last name</th>
-          <th class="w-20 text-uppercase">email</th>
-          <th class="w-5 text-uppercase">user status</th>
+          <!--<th class="w-10 text-uppercase">name flm</th>-->
+          <th class="w-10 text-uppercase">content</th>
+          <th class="w-10 text-uppercase">year</th>
+          <th class="w-20 text-uppercase">high definition</th>
+          <th class="w-5 text-uppercase">view</th>
+          <th class="w-5 text-uppercase">episode number</th>
           <th class="w-20 text-uppercase">date deleted</th>
           <th class="w-20 text-uppercase">action</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="m-0" *ngFor="let history of histories">
-          <td class="w-10">{{ history.id }}</td>
-          <td class="w-10">{{ history.user_name }}</td>
-          <td class="w-10">{{ history.first_name }}</td>
-          <td class="w-10">{{ history.last_name }}</td>
-          <td class="w-20">{{ history.email }}</td>
-          <td class="w-5"><i class="fa" [class.fa-check-circle]="history.user_status === 1"
-                             [class.fa-times-circle]="history.user_status === 0"></i></td>
-          <td class="w-20">{{history.deleted_at}}</td>
+        <tr class="m-0" *ngFor="let history of histories, let i = index">
+          <td class="w-10">{{ i }}</td>
+          <!--<td class="w-10">{{ history.film['film_name'] }}</td>-->
+          <td class="w-10">{{ history.content }}</td>
+          <td class="w-10">{{ history.year }}</td>
+          <td class="w-20">{{ history.high_definition }}</td>
+          <td class="w-5">{{ history.view }}</td>
+          <td class="w-5">{{ history.episode_number }}</td>
+          <td class="w-15">{{ history.deleted_at }}</td>
           <td class="w-20">
-            <a type="button" (click)="restoreUser(history.id)" class="btn btn-info btn-restore">Restore</a>
-            <a type="button" class="btn btn-danger btn-delete" (click)="deleteUserHistory(history.id)" >Delete</a>
+            <a type="button" (click)="restoreInformation(history.id)" class="btn btn-info btn-restore">Restore</a>
+            <a type="button" class="btn btn-danger btn-delete" (click)="deleteInformation(history.id)" >Delete</a>
           </td>
         </tr>
         </tbody>

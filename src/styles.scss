@@ -235,7 +235,10 @@ body {
 }
 
 // page admin
-.users, .categories, .genres, .films, .films-images, .films-information{
+.hidden {
+  display: none;
+}
+.users, .categories, .genres, .films, .films-images, .films-posters, .films-information, .actors{
   margin-top: 50px;
   padding: 0 auto;
   .breadcrumbs {
@@ -252,7 +255,8 @@ body {
       font-size: 20px;
     }
   }
-  .list-users, .list-category, .list-genres, .list-films, .list-images, .list-information-film, .btn {
+  .list-users, .list-category, .list-genres, .list-films, .list-images, .list-information-film, .list-poster,
+  .list-actors, .btn {
     font-size: 17px;
     a {
       margin: 5px;

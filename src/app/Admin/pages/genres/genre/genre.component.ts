@@ -82,9 +82,6 @@ export class GenreComponent implements OnInit {
        const index = categories.controls.findIndex(x => x.value === id);
        categories.removeAt(index);
      }
-
-     console.log(this.genreForm.controls.category.value);
-
   }
   AddGenreSubmit(): any {
     console.log(this.genreForm.value);
@@ -154,5 +151,6 @@ export class GenreComponent implements OnInit {
   reset(e) {
     this.genreForm.reset();
     this.isAvailable = !this.isAvailable;
+    this.clicked = false;
   }
 }
