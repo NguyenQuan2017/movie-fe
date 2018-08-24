@@ -22,6 +22,7 @@ import {FilmsComponent} from './Admin/pages/films/films.component';
 import {InformationComponent} from './Admin/pages/films/information/information.component';
 import {PosterComponent} from './Admin/pages/films/poster/poster.component';
 import {ActorComponent} from './Admin/pages/actors/actor/actor.component';
+import {VideoComponent} from './Admin/pages/films/video/video.component';
 
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
                 { path: '', component: FilmComponent},
                 { path: 'images', component: ImageComponent},
                 { path: 'informations', component: InformationComponent},
-                { path: 'poster', component: PosterComponent }
+                { path: 'poster', component: PosterComponent },
+                { path: 'video', component: VideoComponent}
             ]},
             { path: 'actors', component: ActorComponent},
             { path: '', redirectTo: '', pathMatch: 'full'}

@@ -9,6 +9,13 @@
     background-color: #f5e458;
     margin: 10px;
     font-size: 17px;
+    &.selected {
+      background-color: #dddddd;
+    }
+
+    &:hover {
+      background-color: #cce6ee;
+    }
   }
 }
 vg-player {

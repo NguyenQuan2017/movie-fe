@@ -31,4 +31,8 @@ export class FilmService {
   getRelatedFilm(slug): any {
     return this.http.get(this.rootUrl + 'film/related/' + slug);
   }
+
+  getVideoFilm(slug): any {
+    return this.http.get(this.rootUrl + 'film/video/' + slug);
+  }
 }

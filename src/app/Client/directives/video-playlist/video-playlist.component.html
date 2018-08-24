@@ -22,25 +22,25 @@
         <vg-track-selector></vg-track-selector>
         <vg-mute></vg-mute>
         <vg-volume></vg-volume>
-
         <vg-fullscreen></vg-fullscreen>
       </vg-controls>
 
       <video #media
              [vgMedia]="media"
-             [src]="currentItem.src"
+             [src]="currentItem.link_video"
              preload="auto"
-             id="singleVideo"
-             crossorigin>
+             autoplay
+             id="singleVideo" [poster]="poster">
       </video>
     </vg-player>
   </div>
+
   <div class="row">
     <div class="episode-list col-12">
       <div class="row">
-        <a class="btn btn-episode col-1"  *ngFor="let item of playlist; let $index = index"
-           (click)="onClickPlaylistItem(item, $index)"
-           [class.selected]="item === currentItem">{{item.id}}</a>
+        <a class="btn btn-episode col-1"  *ngFor="let item of videos; let i = index"
+           (click)="onClickPlaylistItem(item, i)"
+           [class.selected]="item === currentItem">{{item.episode}}</a>
       </div>
     </div>
   </div>

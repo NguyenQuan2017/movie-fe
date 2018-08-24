@@ -89,6 +89,7 @@ import { FilmsComponent } from './Admin/pages/films/films.component';
 import { InformationComponent } from './Admin/pages/films/information/information.component';
 import { PosterComponent } from './Admin/pages/films/poster/poster.component';
 import { ActorComponent } from './Admin/pages/actors/actor/actor.component';
+import { VideoComponent } from './Admin/pages/films/video/video.component';
 
 @NgModule({
   declarations: [
@@ -164,6 +165,7 @@ import { ActorComponent } from './Admin/pages/actors/actor/actor.component';
     InformationComponent,
     PosterComponent,
     ActorComponent,
+    VideoComponent,
   ],
   imports: [
     BrowserModule,
