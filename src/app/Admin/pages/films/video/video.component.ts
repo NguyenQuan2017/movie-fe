@@ -28,14 +28,17 @@ import {VideoService} from '../../../services/video.service';
       ]),
   ]
 })
+
 export class VideoComponent implements OnInit {
   state = 'small';
   state_1 = 'hidden';
   histories: any;
+  playlist: any;
   videos: any;
   limit = 150;
   clicked = false;
   films: any;
+  link: string;
   episodes = [];
   i: number;
   actors: any;
@@ -43,8 +46,8 @@ export class VideoComponent implements OnInit {
   is_edit = false;
   VideoForm: FormGroup;
   title: FormControl;
-  link_video: FormControl;
   link_trailer: FormControl;
+  link_video: FormControl;
   episodeNumber: FormControl;
   filmName: FormControl;
   constructor(private fb: FormBuilder, private videoServices: VideoService, private cd: ChangeDetectorRef) { }
@@ -76,9 +79,9 @@ export class VideoComponent implements OnInit {
   createdForm() {
       this.VideoForm = this.fb.group({
           title: this.title,
-          link_video: this.link_video,
           link_trailer: this.link_trailer,
           episodeNumber: this.episodeNumber,
+          link_video: this.link_video,
           filmName: this.filmName,
           image: null
       });
@@ -128,12 +131,21 @@ export class VideoComponent implements OnInit {
       this.editIndex = id;
       this.VideoForm.patchValue({
           title: video.title,
-          link_video: video.link_video,
+          link_video: video.link,
           link_trailer: video.link_trailer,
           episodeNumber: video.episode,
           filmName: video.film_id,
       });
       this.show();
   }
+
+  editVideoSubmit() {
+      this.clicked = true;
+      this.videoServices.editVideo(this.VideoForm.value, this.editIndex).subscribe(data => {
+          this.getListVideo();
+      });
+      this.VideoForm.reset();
+  }
+
 
 }

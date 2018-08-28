@@ -4,7 +4,8 @@
     <a href="javascript:void(0)" (click)="toggleAction()" class="float-right btn-add"><i class="fa fa-plus-square "></i></a>
   </div>
   <div [@toggleAction]= 'state' class="toggle-action">
-    <form id="myForm" novalidate [formGroup]="VideoForm" (ngSubmit)="clicked ? EditFilmSubmit($event) : AddVideoSubmit($event) " enctype="multipart/form-data">
+
+    <form id="myForm" novalidate [formGroup]="VideoForm" (ngSubmit)="clicked ? editVideoSubmit($event) : AddVideoSubmit($event) " enctype="multipart/form-data">
       <div class="form-group">
         <label>Name Film</label>
         <select formControlName="filmName" class="form-control">
@@ -20,12 +21,12 @@
           Title is required
         </p>
       </div>
-      <label>Link Video</label>
+      <label>Link video</label>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon2">https://example.com/users/</span>
         </div>
-        <input type="text" class="form-control" formControlName="link_video"  aria-describedby="basic-addon2">
+        <input type="text" class="form-control" formControlName="link_video" aria-describedby="basic-addon2">
       </div>
       <label>Link trailer</label>
       <div class="input-group mb-3">
@@ -57,10 +58,9 @@
         <th class="5 text-uppercase">id</th>
         <th class="w-5 text-uppercase">name film</th>
         <th class="w-15 text-uppercase">title</th>
-        <th class="w-10 text-uppercase">link video</th>
-        <th class="w-10 text-uppercase">link trailer</th>
+        <th class="w-10 text-uppercase">link</th>
+        <th class="w-10 text-uppercase">trailer</th>
         <th class="w-5 text-uppercase">episode</th>
-        <th class="w-5 text-uppercase">type</th>
         <th class="w-10 text-uppercase">date created</th>
         <th class="w-10 text-uppercase">date updated</th>
         <th class="w-10 text-uppercase">action</th>
@@ -72,12 +72,11 @@
         <td class="w-5">{{ video.film['film_name']}}</td>
         <td class="w-15">{{ video.title }}</td>
         <td class="w-10">
-         <p *ngIf="video.link_video.length <= 30">{{video.link_video}}</p>
-         <p *ngIf="video.link_video.length > 30">{{video.link_video | slice:0:30}}...<a href="javscript:void(0)" (click)="editVideo(video, video.id)">More</a></p>
+         <p *ngIf="video.link.length <= 30">{{video.link}}</p>
+         <p *ngIf="video.link.length > 30">{{video.link | slice:0:30}}...<a href="javscript:void(0)" (click)="editVideo(video, video.id)">More</a></p>
         </td>
-        <td class="w-10">{{ video.link_trailer }}</td>
+        <td class="w-10">{{ video.trailer }}</td>
         <td class="w-5">{{ video.episode }}</td>
-        <td class="w-5">{{ video.type }}</td>
         <td class="w-10">{{video.created_at}}</td>
         <td class="w-10">{{video.updated_at}}</td>
         <td class="w-10">

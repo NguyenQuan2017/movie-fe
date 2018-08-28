@@ -12,6 +12,7 @@ export class VideoService {
   public httpOptions = {
       headers: new HttpHeaders({
           'Authorization': 'Bearer ' + this.token.getToken(),
+          'accept': 'multipart/form-data'
       })
   };
 
@@ -25,5 +26,14 @@ export class VideoService {
 
   createVideo(data): any {
     return this.http.post(this.rootUrl + 'video', data, this.httpOptions);
+  }
+
+  editVideo(data, id): any {
+    return this.http.put(this.rootUrl + 'video/' + id, data, this.httpOptions);
+  }
+
+  getLink(link) {
+     console.log(link);
+    return this.http.post(this.rootUrl + 'video/get-link', {link_video: link}, this.httpOptions);
   }
 }

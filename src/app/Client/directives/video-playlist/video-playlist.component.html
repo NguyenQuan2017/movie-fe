@@ -1,38 +1,40 @@
 <div class="video-movie col-12">
   <div class="row">
-    <vg-player>
-      <vg-overlay-play></vg-overlay-play>
-      <vg-buffering></vg-buffering>
+    <!--<vg-player >-->
+      <!--<vg-overlay-play></vg-overlay-play>-->
+      <!--<vg-buffering></vg-buffering>-->
 
-      <vg-scrub-bar>
-        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-      </vg-scrub-bar>
+      <!--<vg-scrub-bar>-->
+        <!--<vg-scrub-bar-current-time></vg-scrub-bar-current-time>-->
+        <!--<vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>-->
+      <!--</vg-scrub-bar>-->
 
-      <vg-controls>
-        <vg-play-pause></vg-play-pause>
-        <!--<vg-playback-button></vg-playback-button>-->
-        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+      <!--<vg-controls>-->
+        <!--<vg-play-pause></vg-play-pause>-->
+        <!--&lt;!&ndash;<vg-playback-button></vg-playback-button>&ndash;&gt;-->
+        <!--<vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>-->
 
-        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+        <!--<vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>-->
 
-        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+        <!--<vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>-->
+        <!--<vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>-->
 
-        <vg-track-selector></vg-track-selector>
-        <vg-mute></vg-mute>
-        <vg-volume></vg-volume>
-        <vg-fullscreen></vg-fullscreen>
-      </vg-controls>
+        <!--<vg-track-selector></vg-track-selector>-->
+        <!--<vg-quality-selector></vg-quality-selector>-->
+        <!--<vg-mute></vg-mute>-->
+        <!--<vg-volume></vg-volume>-->
+        <!--<vg-fullscreen></vg-fullscreen>-->
+      <!--</vg-controls>-->
 
-      <video #media
-             [vgMedia]="media"
-             [src]="currentItem.link_video"
-             preload="auto"
-             autoplay
-             id="singleVideo" [poster]="poster">
-      </video>
-    </vg-player>
+      <!--<video #media class="video"-->
+             <!--[vgMedia]="media"-->
+             <!--[src]="currentItem.link_video"-->
+             <!--preload="auto"-->
+             <!--autoplay-->
+             <!--id="singleVideo" [poster]="poster">-->
+      <!--</video>-->
+    <!--</vg-player>-->
+    <div id="player">This text will be removed.</div>
   </div>
 
   <div class="row">

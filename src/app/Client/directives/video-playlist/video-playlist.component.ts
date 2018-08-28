@@ -1,7 +1,8 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, Directive, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FilmService} from '../../services/film.service';
-import {VgAPI} from 'videogular2/core';
+
+declare var jwplayer: any;
 // export  interface  IMedia {
 //   id: number;
 //   title: string;
@@ -14,10 +15,13 @@ import {VgAPI} from 'videogular2/core';
   templateUrl: './video-playlist.component.html',
   styleUrls: ['./video-playlist.component.scss']
 })
+
 export class VideoPlaylistComponent implements OnInit {
     slug: string;
     videos: any;
     poster: any;
+    file: string;
+
     // playlist: Array<IMedia> = [
     //     {
     //         id: 1,
@@ -60,7 +64,18 @@ export class VideoPlaylistComponent implements OnInit {
     }
 
   ngOnInit() {
+        console.log(this.currentItem);
       this.getVideoFilm();
+      jwplayer('player').setup({
+          title: '',
+          file: 'http://example.com/myVideo.mp4',
+          width: 1140,
+          height: 500,
+          aspectratio: '16:9',
+          allowFullscreen: true,
+          mute: false,
+          autostart: true,
+      });
   }
 
 
@@ -76,6 +91,21 @@ export class VideoPlaylistComponent implements OnInit {
   onClickPlaylistItem(item, index) {
     this.currentIndex = index;
     this.currentItem = item;
+    console.log(this.currentItem.link_video);
+    jwplayer('player').setup({
+      title: this.currentItem.title,
+      sources: this.currentItem.sources,
+      image: this.currentItem.poster,
+      width: 1140,
+      height: 600,
+      aspectratio: '16:9',
+      allowFullscreen: true,
+      mute: false,
+      autostart: true,
+      primary: 'html5',
+    });
+
+
   }
 
 

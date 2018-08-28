@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FilmService} from '../../services/film.service';
 
+
 @Component({
   selector: 'app-watch-movie',
   templateUrl: './watch-movie.component.html',
@@ -27,4 +28,6 @@ export class WatchMovieComponent implements OnInit {
       console.log(this.film);
     });
   }
+
+
 }

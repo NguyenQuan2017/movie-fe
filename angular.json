@@ -41,7 +41,6 @@
               "src/assets/js/app.js",
               "./node_modules/jquery-menu-aim/jquery.menu-aim.js",
               "src/assets/js/admin.js"
-
             ]
           },
           "configurations": {

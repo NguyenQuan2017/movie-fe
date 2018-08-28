@@ -90,6 +90,7 @@ import { InformationComponent } from './Admin/pages/films/information/informatio
 import { PosterComponent } from './Admin/pages/films/poster/poster.component';
 import { ActorComponent } from './Admin/pages/actors/actor/actor.component';
 import { VideoComponent } from './Admin/pages/films/video/video.component';
+import { JwplayerComponent } from './Client/directives/jwplayer/jwplayer.component';
 
 @NgModule({
   declarations: [
@@ -166,6 +167,7 @@ import { VideoComponent } from './Admin/pages/films/video/video.component';
     PosterComponent,
     ActorComponent,
     VideoComponent,
+    JwplayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -183,7 +185,6 @@ import { VideoComponent } from './Admin/pages/films/video/video.component';
     ReactiveFormsModule,
     HttpClientModule,
     EditorModule,
-
   ],
   exports: [
       MatTabsModule
