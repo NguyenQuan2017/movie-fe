@@ -45,6 +45,10 @@
         <input type="file" (change)="onSelectedFile($event)" class="form-control" [attr.disabled]="is_edit=== true ? 'false' : null">
       </div>
       <div class="form-group">
+        <label>Episode number</label>
+        <input type="text" class="form-control" formControlName="episodeNumber">
+      </div>
+      <div class="form-group">
         <fieldset class="form-group">
           <legend>Choose your category</legend>
           <div class="row">
@@ -81,6 +85,21 @@
           </div>
         </fieldset>
       </div>
+
+      <div class="form-group">
+        <fieldset class="form-group">
+          <legend>Choose your country</legend>
+          <div class="row">
+            <div *ngFor="let country of countries" class="form-check col-2">
+              <label class="form-check-label">
+                <input type="checkbox" #checkbox (change)="changeCountry(country.id, $event.target.checked)"> {{country.country}}
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+
       <button type="button" (click)="reset($event)" class="btn btn-reset float-right">Reset</button>
       <button type="submit" class="btn btn-save float-right">Save</button>
     </form>
@@ -92,29 +111,33 @@
         <th class="5 text-uppercase">id</th>
         <th class="w-5 text-uppercase">name film</th>
         <th class="w-5 text-uppercase">name film english</th>
-        <th class="w-15 text-uppercase">Description</th>
-        <th class="w-15 text-uppercase">image</th>
+        <th class="w-10 text-uppercase">Description</th>
+        <th class="w-5 text-uppercase">no episode</th>
+        <th class="w-10 text-uppercase">image</th>
         <th class="w-10 text-uppercase">categories</th>
         <th class="w-10 text-uppercase">genres</th>
-        <th class="w-10 text-uppercase">date created</th>
-        <th class="w-10 text-uppercase">date updated</th>
+        <th class="w-5 text-uppercase">countries</th>
+        <!--<th class="w-10 text-uppercase">date created</th>-->
+        <!--<th class="w-10 text-uppercase">date updated</th>-->
         <th class="w-10 text-uppercase">action</th>
       </tr>
       </thead>
       <tbody>
       <tr class="m-0" *ngFor="let film of films, let i = index">
-        <td class="w-5">{{ i }}</td>
+        <td class="w-5">{{ i + 1 }}</td>
         <td class="w-5">{{ film.film_name }}</td>
         <td class="w-5">{{ film.film_name_el }}</td>
-        <td class="w-15">
+        <td class="w-10">
           <p *ngIf="film.description.length <= limit">{{ film.description}}</p>
           <p *ngIf="film.description.length > limit">{{film.description | slice : 0 : limit}} ... <a href="javascript:void(0)" (click)="editFilm(film, film.id)">More</a></p>
         </td>
-        <td class="w-15"><img src="{{film.image['link']}}" [height]="150" [width]="100" alt=""></td>
+        <td class="w-5">{{film.no_episode}}</td>
+        <td class="w-10"><img src="{{film.image['link']}}" [height]="150" [width]="100" alt=""></td>
         <td class="w-10"><a class="btn btn-category" *ngFor="let category of film.categories">{{category.cate_name}}</a></td>
         <td class="w-10"><a class="btn btn-category" *ngFor="let genre of film.genres">{{genre.genre_name}}</a></td>
-        <td class="w-10">{{film.created_at}}</td>
-        <td class="w-10">{{film.updated_at}}</td>
+        <td class="w-5"><a class="btn btn-category" *ngFor="let country of film.countries">{{country.country}}</a></td>
+        <!--<td class="w-10">{{film.created_at}}</td>-->
+        <!--<td class="w-10">{{film.updated_at}}</td>-->
         <td class="w-10">
           <a type="button" class="btn btn-dark" (click)="editFilm(film, film.id)">Edit</a>
           <a type="button" class="btn btn-danger" (click)="removeFilm(film.id)">Remove</a>
@@ -137,8 +160,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="m-0" *ngFor="let history of histories">
-          <td class="w-10">{{ history.id }}</td>
+        <tr class="m-0" *ngFor="let history of histories, let i = index">
+          <td class="w-10">{{ i + 1 }}</td>
           <td class="w-10">{{ history.film_name }}</td>
           <td class="w-10">{{ history.film_name_el }}</td>
           <td class="w-20">{{history.deleted_at}}</td>

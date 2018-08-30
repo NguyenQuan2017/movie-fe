@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-md-3 col-sm-6" *ngFor="let sci_fi_newest_movie of sci_fi_newest_movies">
+  <div class="col-md-3 col-sm-6" *ngFor="let movie of newest_sci_fi_movies">
     <div class="images" >
-      <a routerLink="/xem-phim">
-        <img src="{{sci_fi_newest_movie.image}}" alt="Avatar" class="img-fluid">
+      <a routerLink="/xem-phim/{{movie.slug}}">
+        <img src="{{movie.image['link']}}" alt="Avatar" class="img-fluid">
         <div class="name-movie">
-          <p class="text-center">{{sci_fi_newest_movie.name}}</p>
-          <p class="text-center el-name">( {{sci_fi_newest_movie.el_name}} )</p>
+          <p class="text-center">{{movie.film_name}}</p>
+          <p class="text-center el-name">( {{movie.film_name_el}} )</p>
         </div>
       </a>
     </div>

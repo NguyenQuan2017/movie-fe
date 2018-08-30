@@ -33,8 +33,9 @@ export class FilmComponent implements OnInit {
   state_1 = 'hidden';
   histories: any;
   categories: any;
+  countries: any;
   genres: any;
-  limit = 150;
+  limit = 100;
   clicked = false;
   films: any;
   actors: any;
@@ -44,6 +45,7 @@ export class FilmComponent implements OnInit {
   filmName: FormControl;
   filmNameEl: FormControl;
   description: FormControl;
+  episodeNumber: FormControl;
 
   constructor(private fb: FormBuilder, private filmService: FilmService, private  cd: ChangeDetectorRef) {
     this.createFormControls();
@@ -56,6 +58,7 @@ export class FilmComponent implements OnInit {
       this.getCategories();
       this.getGenres();
       this.getActors();
+      this.getCountries();
 
   }
 
@@ -81,10 +84,12 @@ export class FilmComponent implements OnInit {
         filmName: this.filmName,
         filmNameEl: this.filmNameEl,
         description: this.description,
+        episodeNumber: this.episodeNumber,
         image: null,
         category: this.fb.array([]),
         genre: this.fb.array([]),
-        actor: this.fb.array([])
+        actor: this.fb.array([]),
+        country: this.fb.array([])
     });
   }
 
@@ -135,6 +140,15 @@ export class FilmComponent implements OnInit {
         }
   }
 
+  changeCountry(id: number, isChecked: boolean) {
+      const countries = <FormArray> this.FilmForm.controls.country;
+      if (isChecked) {
+          countries.push(new FormControl(id));
+      } else {
+          const index = countries.controls.findIndex(x => x.value === id);
+          countries.removeAt(index);
+      }
+  }
 
   getAllListFilm(): any {
       return this.filmService.getAllListFilms().subscribe(data => {
@@ -158,6 +172,13 @@ export class FilmComponent implements OnInit {
           this.actors = data.data.actors;
       });
   }
+
+  getCountries(): any {
+      return this.filmService.getCountries().subscribe(data => {
+          this.countries = data.data.countries;
+      });
+}
+
   getAllListFilmRemoved(): any {
       return this.filmService.getAllListFilmsRemoved().subscribe(data => {
           console.log(data);
@@ -181,7 +202,8 @@ export class FilmComponent implements OnInit {
       this.FilmForm.patchValue({
           filmName: film.film_name,
           filmNameEl: film.film_name_el,
-          description: film.description
+          description: film.description,
+          episodeNumber: film.no_episode,
       });
       window.scroll(0, 0);
   }

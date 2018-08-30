@@ -35,6 +35,10 @@ export class FilmService {
       return this.http.get(this.rootUrl + 'actor', this.httpOptions);
   }
 
+  getCountries(): any {
+      return this.http.get(this.rootUrl + 'country', this.httpOptions);
+  }
+
   createFilm(data): any {
     return this.http.post(this.rootUrl + 'film', data, this.httpOptions);
   }

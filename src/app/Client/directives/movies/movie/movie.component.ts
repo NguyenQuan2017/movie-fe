@@ -8,17 +8,17 @@ import {FilmService} from '../../../services/film.service';
 })
 export class MovieComponent implements OnInit {
 
-  newestfilms: any;
-  constructor(private filmService: FilmService) { }
+  highlight_movies: any;
+  constructor(private film: FilmService) { }
 
   ngOnInit() {
       this.getNewestFilm();
   }
 
   getNewestFilm(): any {
-      return this.filmService.getNewestFilm().subscribe(data => {
-          this.newestfilms = data.data.newestfilms;
-          console.log(this.newestfilms);
+      return this.film.getHighlight().subscribe(data => {
+          this.highlight_movies = data.data.movies;
+          // console.log(this.newestfilms);
       });
   }
 

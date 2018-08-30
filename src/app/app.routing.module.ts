@@ -23,16 +23,17 @@ import {InformationComponent} from './Admin/pages/films/information/information.
 import {PosterComponent} from './Admin/pages/films/poster/poster.component';
 import {ActorComponent} from './Admin/pages/actors/actor/actor.component';
 import {VideoComponent} from './Admin/pages/films/video/video.component';
+import {CountryComponent} from './Admin/pages/country/country.component';
 
 
 const routes: Routes = [
     { path: '', component: IndexComponent, children: [
             { path: '', component: HomeComponent},
             { path: 'xem-phim/:name_film', component: WatchMovieComponent},
-            { path: 'danh-muc/:id/phim-bo', component: PhimBoComponent },
-            { path: 'danh-muc/:id/phim-le', component: PhimLeComponent },
-            { path: 'danh-muc/:id/phim-chieu-rap', component: PhimChieuRapComponent },
-            { path: 'danh-muc/:id/anime', component: PhimHoatHinhComponent },
+            { path: 'danh-muc/phim-bo', component: PhimBoComponent },
+            { path: 'danh-muc/phim-le', component: PhimLeComponent },
+            { path: 'danh-muc/phim-chieu-rap', component: PhimChieuRapComponent },
+            { path: 'danh-muc/anime', component: PhimHoatHinhComponent },
             { path: 'the-loai/:id/han-quoc', component: GenreMovieComponent },
             { path: '', redirectTo: '', pathMatch: 'full'},
         ] },
@@ -48,6 +49,7 @@ const routes: Routes = [
                 { path: 'video', component: VideoComponent}
             ]},
             { path: 'actors', component: ActorComponent},
+            { path: 'country', component: CountryComponent },
             { path: '', redirectTo: '', pathMatch: 'full'}
         ]},
     { path: 'admin/login', component: LoginComponent},

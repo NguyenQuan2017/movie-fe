@@ -35,7 +35,7 @@ export class CarouselComponent implements OnInit {
   }
 
   getFilmHighLightFirst(): any {
-    this.filmService.getHighLightFilmFrist().subscribe(data => {
+    this.filmService.getHighLightFilmFirst().subscribe(data => {
       this.item = data.data.film;
     });
   }

@@ -36,7 +36,7 @@
       </thead>
       <tbody>
       <tr class="m-0" *ngFor="let image of images, let i = index">
-        <td class="w-10">{{ i }}</td>
+        <td class="w-10">{{ i + 1 }}</td>
         <td class="w-10">{{ image.image_name }}</td>
         <td class="w-10 d-flex justify-content-center"><a href="{{image.link}}" target="_blank"><img src="{{ image.link}}" class="" [height]="300" [width]="200" alt="{{image.slug}}"></a></td>
         <td class="w-20">{{ image.film['film_name']}}</td>
@@ -63,8 +63,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="m-0" *ngFor="let history of histories">
-          <td class="w-10">{{ history.id }}</td>
+        <tr class="m-0" *ngFor="let history of histories, let i = index ">
+          <td class="w-10">{{ i + 1 }}</td>
           <td class="w-10">{{ history.image_name }}</td>
           <td class="w-10">{{ history.link }}</td>
           <td class="w-20">{{history.deleted_at}}</td>

@@ -68,7 +68,7 @@
       </thead>
       <tbody>
       <tr class="m-0" *ngFor="let information of informations, let i = index">
-        <td class="w-10">{{ i }}</td>
+        <td class="w-10">{{ i + 1 }}</td>
         <td class="w-15">{{information.film['film_name']}}</td>
         <td class="w-20">
           <p *ngIf="information.content.length <= limit">
@@ -111,7 +111,7 @@
         </thead>
         <tbody>
         <tr class="m-0" *ngFor="let history of histories, let i = index">
-          <td class="w-10">{{ i }}</td>
+          <td class="w-10">{{ i + 1 }}</td>
           <!--<td class="w-10">{{ history.film['film_name'] }}</td>-->
           <td class="w-10">{{ history.content }}</td>
           <td class="w-10">{{ history.year }}</td>

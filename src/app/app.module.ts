@@ -91,6 +91,9 @@ import { PosterComponent } from './Admin/pages/films/poster/poster.component';
 import { ActorComponent } from './Admin/pages/actors/actor/actor.component';
 import { VideoComponent } from './Admin/pages/films/video/video.component';
 import { JwplayerComponent } from './Client/directives/jwplayer/jwplayer.component';
+import { CountryComponent } from './Admin/pages/country/country.component';
+import { ChinaMovieComponent } from './Client/directives/categories/series/china-movie/china-movie.component';
+import { NewestChinaMovieComponent } from './Client/directives/categories/series/newest-china-movie/newest-china-movie.component';
 
 @NgModule({
   declarations: [
@@ -168,6 +171,9 @@ import { JwplayerComponent } from './Client/directives/jwplayer/jwplayer.compone
     ActorComponent,
     VideoComponent,
     JwplayerComponent,
+    CountryComponent,
+    ChinaMovieComponent,
+    NewestChinaMovieComponent,
   ],
   imports: [
     BrowserModule,

@@ -238,7 +238,8 @@ body {
 .hidden {
   display: none;
 }
-.users, .categories, .genres, .films, .films-images, .films-posters, .films-information, .actors{
+.users, .categories, .genres, .films, .films-images, .films-posters, .films-information, .actors,
+.countries {
   margin-top: 50px;
   padding: 0 auto;
   .breadcrumbs {
@@ -256,7 +257,7 @@ body {
     }
   }
   .list-users, .list-category, .list-genres, .list-films, .list-images, .list-information-film, .list-poster,
-  .list-actors, .btn {
+  .list-actors, .list-country, .btn {
     font-size: 17px;
     a {
       margin: 5px;

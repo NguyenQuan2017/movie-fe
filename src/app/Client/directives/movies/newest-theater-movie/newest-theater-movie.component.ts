@@ -8,9 +8,19 @@ import {FilmService} from '../../../services/film.service';
 })
 export class NewestTheaterMovieComponent implements OnInit {
 
-  constructor() { }
+
+  newest_theater_movies: any;
+
+  constructor(private film: FilmService) { }
 
   ngOnInit() {
+    this.getNewestTheaterMovie();
+  }
+
+  getNewestTheaterMovie(): any {
+    return this.film.getNewestTheaterMovie().subscribe(data => {
+      this.newest_theater_movies = data.data.movies;
+    });
   }
 
 

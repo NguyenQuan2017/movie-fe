@@ -8,7 +8,7 @@ import {FilmService} from '../../../services/film.service';
 })
 export class TheaterMoviesComponent implements OnInit {
 
-  films: any;
+  highlight_theater_movies: any;
   constructor(private filmService: FilmService) { }
 
   ngOnInit() {
@@ -16,9 +16,8 @@ export class TheaterMoviesComponent implements OnInit {
   }
 
   getTheaterFilm(): any {
-        return this.filmService.getTheaterFilm().subscribe(data => {
-            this.films = data.data.films;
-            console.log(this.films);
+        return this.filmService.getHighlightTheaterMovie().subscribe(data => {
+            this.highlight_theater_movies = data.data.movies;
         });
   }
 
